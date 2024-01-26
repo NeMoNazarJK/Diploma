@@ -38,15 +38,12 @@ namespace Diplom.RSA
                     BigInteger d = BigInteger.Parse(parts[0]);
                     BigInteger n = BigInteger.Parse(parts[1]);
 
-                    // Розшифруємо повідомлення
                     Stopwatch stopwatch = Stopwatch.StartNew();
                     (string decryptedMessage, string decryptedMessageInNumbersfiles) = Decrypt(message, d, n, alphabet);
                     stopwatch.Stop();
                     TimeSpan decryptionTime = stopwatch.Elapsed;
                     DecryptedTextTime = decryptionTime.ToString();
 
-                    // Зберігаємо результати розшифрування
-                    File.WriteAllText("..\\..\\..\\Files\\decrypted_InNumbers.txt", decryptedMessageInNumbersfiles);
                     File.WriteAllText("..\\..\\..\\Files\\decrypted_Message.txt", decryptedMessage);
                 }
                 else
@@ -79,14 +76,12 @@ namespace Diplom.RSA
         {
             List<BigInteger> encryptedNumbers = new List<BigInteger>();
 
-            // Розділити зашифровані блоки і перетворити їх на числа
             string[] encryptedBlockArray = encryptedBlocks.Split(' ');
             foreach (string block in encryptedBlockArray)
             {
                 encryptedNumbers.Add(BigInteger.Parse(block));
             }
 
-            // Розшифрувати кожен блок і об'єднати результати
             StringBuilder decryptedMessage = new StringBuilder();
             StringBuilder decryptedMessageInNumbers = new StringBuilder();
 
