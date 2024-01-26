@@ -9,16 +9,14 @@ namespace Diplom.RSA
 {
     internal class EncryptionRSA
     {
-        public static string OnEncryptionTextClick(object sender, EventArgs a, string txtTextSize, out string EncryptionTextTime)
+        public static string OnEncryptionTextClick(object sender, EventArgs a, string txtTextSize, out string EncryptionTextTime, string fileEncryptionTextPath)
         {
             EncryptionTextTime = "";
             string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
-           
-            string filePath = "..\\..\\..\\Files\\Publickey.pem"; 
 
             try
             {
-                string fileContent = File.ReadAllText(filePath);
+                string fileContent = File.ReadAllText(fileEncryptionTextPath);
 
                 string[] parts = fileContent.Split(',');
 
@@ -38,6 +36,7 @@ namespace Diplom.RSA
                     File.WriteAllText("..\\..\\..\\Files\\messageBlock.txt", messageBlock);
                     File.WriteAllText("..\\..\\..\\Files\\encrypted_blocks.txt", encryptedBlock);
                     File.WriteAllText("..\\..\\..\\Files\\encrypted_message.txt", encryptedMessage);
+                    File.WriteAllText("..\\..\\..\\Files\\fileEncryptionTextPath.txt", fileEncryptionTextPath);
 
                     using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Fine.txt"))
                     {
@@ -57,7 +56,7 @@ namespace Diplom.RSA
             {
                 using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Erorr_1.txt"))
                 {
-                    file.WriteLine($"Файл за шляхом {filePath} не знайдено.");
+                    file.WriteLine($"Файл за шляхом {fileEncryptionTextPath} не знайдено.");
                 }
             }
             catch (Exception ex)

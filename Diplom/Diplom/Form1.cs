@@ -16,6 +16,7 @@ namespace Diplom
 
         private Button btnGeneratingkeys;
         private Button btnEncryptionText;
+        private Button btnOpenFileEncryptionText;
         private TextBox txtTextSize;
         private TextBox txtGeneratingkeys;
         private Label lblPrivatekeyTime;
@@ -25,6 +26,7 @@ namespace Diplom
         private string PrivatekeyTime = "";
         private string PublickeyTime = "";
         private string EncryptionTextTime = "";
+        private string fileEncryptionTextPath = "";
 
         private void InitializeFormElements()
         {
@@ -74,12 +76,19 @@ namespace Diplom
                 Text = ""
             };
 
-            btnEncryptionText = new Button
+            btnOpenFileEncryptionText = new Button
             {
                 Location = new Point(500, 80),
                 Size = new Size(180, 22),
+                Text = "Вибрати файл з публічним ключем"
+            };
+
+            btnEncryptionText = new Button
+            {
+                Location = new Point(500, 120),
+                Size = new Size(180, 22),
                 Text = "Зашифрувати ведений текст"
-            };        
+            };
 
             btnGeneratingkeys.Click += (sender, e) =>
             {
@@ -88,14 +97,24 @@ namespace Diplom
                 lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
             };
 
+            btnOpenFileEncryptionText.Click += (sender, e) =>
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    fileEncryptionTextPath = openFileDialog.FileName;
+                }
+            };
+
             btnEncryptionText.Click += (sender, e) =>
             {
-                EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime);
+                EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime, fileEncryptionTextPath);
                 lblEncryptionTextTime.Text = $"Час за шифрування: {EncryptionTextTime}";
             };
 
             Controls.Add(btnGeneratingkeys);
             Controls.Add(btnEncryptionText);
+            Controls.Add(btnOpenFileEncryptionText);
             Controls.Add(txtTextSize);
             Controls.Add(txtGeneratingkeys);
             Controls.Add(lblPrivatekeyTime);
