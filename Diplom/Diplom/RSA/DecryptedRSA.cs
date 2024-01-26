@@ -93,7 +93,7 @@ namespace Diplom.RSA
                 }
                 else
                 {
-                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Erorr_5.txt"))
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Erorr_6.txt"))
                     {
                         file.WriteLine($"Помилка перетворення рядка {numberAsString} в BigInteger");
                     }
@@ -110,11 +110,11 @@ namespace Diplom.RSA
             StringBuilder decryptedMessageBuilder = new StringBuilder();
             for (int i = 0; i < decryptedMessageInNumbers.Length; i += 3)
             {
-                int index = int.Parse(decryptedMessageInNumbers.Substring(i, 3));
+                int index = int.Parse(decryptedMessageInNumbers.Substring(i, 2));
                 decryptedMessageBuilder.Append(alphabet[index]);
             }
             string decryptedMessage = decryptedMessageBuilder.ToString();
-            //decryptedMessage = decryptedMessage.Replace("—", "");
+            decryptedMessage = decryptedMessage.Replace("—", "");
             return (decryptedMessage, decryptedMessageInNumbersfiles);
         }
     }

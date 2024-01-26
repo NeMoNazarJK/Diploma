@@ -127,8 +127,12 @@ namespace Diplom
                     fileDecryptedKeyPath = openFileDialog.FileName;
                 }
                 DecryptedRSA.OnDecryptedTextClick(sender, e, out DecryptedTextTime, fileDecryptedKeyPath);
-                lblEncryptionTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
+                lblDecryptedTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
             };
+            lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
+            lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
+            lblEncryptionTextTime.Text = $"Час за шифрування: {EncryptionTextTime}";
+            lblDecryptedTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
 
             Controls.Add(btnGeneratingkeys);
             Controls.Add(btnEncryptionText);
