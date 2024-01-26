@@ -25,6 +25,9 @@ namespace Diplom
         private Label lblPublickeyTime;
         private Label lblEncryptionTextTime;
         private Label lblDecryptedTextTime;
+        private Label lblmemoryInMegabytesKey;
+        private Label lblmemoryInMegabytesEncryption;
+        private Label lblmemoryInMegabytesDecrypted;
 
         private string PrivatekeyTime = "";
         private string PublickeyTime = "";
@@ -32,7 +35,10 @@ namespace Diplom
         private string DecryptedTextTime = "";
         private string fileEncryptionTextPath = "";
         private string fileDecryptedKeyPath = "";
-        List<BigInteger> encryptedBlocks = new List<BigInteger>();
+        private double memoryInMegabytesK = 0.0;
+        private double memoryInMegabytesE = 0.0;
+        private double memoryInMegabytesD = 0.0;
+        private double memoryInMegabytesFinal = 0.0;
 
         private void InitializeFormElements()
         {
@@ -49,91 +55,131 @@ namespace Diplom
 
             lblPrivatekeyTime = new Label
             {
-                Location = new Point(750, 15),
+                Location = new Point(600, 15),
                 AutoSize = true,
                 Text = ""
             };
 
             lblPublickeyTime = new Label
             {
-                Location = new Point(750, 30),
+                Location = new Point(600, 30),
                 AutoSize = true,
                 Text = ""
             };
 
             lblEncryptionTextTime = new Label
             {
-                Location = new Point(750, 45),
+                Location = new Point(600, 45),
                 AutoSize = true,
                 Text = ""
             };
 
             lblDecryptedTextTime = new Label
             {
-                Location = new Point(750, 60),
+                Location = new Point(600, 60),
+                AutoSize = true,
+                Text = ""
+            };
+
+            lblmemoryInMegabytesKey = new Label
+            {
+                Location = new Point(915, 15),
+                AutoSize = true,
+                Text = ""
+            };
+
+            lblmemoryInMegabytesEncryption = new Label
+            {
+                Location = new Point(915, 30),
+                AutoSize = true,
+                Text = ""
+            };
+
+            lblmemoryInMegabytesDecrypted = new Label
+            {
+                Location = new Point(915, 45),
                 AutoSize = true,
                 Text = ""
             };
 
             txtGeneratingkeys = new TextBox
             {
-                Location = new Point(500, 10),
+                Location = new Point(430, 10),
                 Size = new Size(40, 40),
                 Text = "2048"
             };
 
             btnGeneratingkeys = new Button
             {
-                Location = new Point(500, 40),
+                Location = new Point(430, 40),
                 Size = new Size(150, 45),
                 Text = "Згенерувати пару ключів"
             };
 
             btnEncryptionText = new Button
             {
-                Location = new Point(500, 100),
+                Location = new Point(430, 100),
                 Size = new Size(150, 45),
                 Text = "Зашифрувати ведений текст"
             };
 
             btnDecryptedText = new Button
             {
-                Location = new Point(500, 160),
+                Location = new Point(430, 160),
                 Size = new Size(150, 45),
                 Text = "Розшифрування тексту"
             };
 
             btnGeneratingkeys.Click += (sender, e) =>
             {
-                GeneratingKeys.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
-                lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
-                lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
+                using (Process process = Process.GetCurrentProcess())
+                {
+                    GeneratingKeys.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
+                    lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
+                    lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
+                    memoryInMegabytesK = process.PrivateMemorySize64 / (1024 * 1024);
+                }
+                lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
             };
 
             btnEncryptionText.Click += (sender, e) =>
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                using (Process process = Process.GetCurrentProcess())
                 {
-                    fileEncryptionTextPath = openFileDialog.FileName;
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        fileEncryptionTextPath = openFileDialog.FileName;
+                    }
+                    EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime, fileEncryptionTextPath);
+                    lblEncryptionTextTime.Text = $"Час шифрування: {EncryptionTextTime}";
+                    memoryInMegabytesE = process.PrivateMemorySize64 / (1024 * 1024);
                 }
-                EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime, fileEncryptionTextPath);
-                lblEncryptionTextTime.Text = $"Час за шифрування: {EncryptionTextTime}";
+                lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
             };
 
             btnDecryptedText.Click += (sender, e) =>
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                using (Process process = Process.GetCurrentProcess())
                 {
-                    fileDecryptedKeyPath = openFileDialog.FileName;
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        fileDecryptedKeyPath = openFileDialog.FileName;
+                    }
+                    DecryptedRSA.OnDecryptedTextClick(sender, e, out DecryptedTextTime, fileDecryptedKeyPath);
+                    lblDecryptedTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
+                    memoryInMegabytesD = process.PrivateMemorySize64 / (1024 * 1024);
                 }
-                DecryptedRSA.OnDecryptedTextClick(sender, e, out DecryptedTextTime, fileDecryptedKeyPath);
-                lblDecryptedTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
+                lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для для розшифрування тексту";
             };
+
+            lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
+            lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
+            lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для розшифрування тексту";
             lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
             lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
-            lblEncryptionTextTime.Text = $"Час за шифрування: {EncryptionTextTime}";
+            lblEncryptionTextTime.Text = $"Час шифрування: {EncryptionTextTime}";
             lblDecryptedTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
 
             Controls.Add(btnGeneratingkeys);
@@ -145,6 +191,9 @@ namespace Diplom
             Controls.Add(lblPublickeyTime);
             Controls.Add(lblEncryptionTextTime);
             Controls.Add(lblDecryptedTextTime);
+            Controls.Add(lblmemoryInMegabytesKey);
+            Controls.Add(lblmemoryInMegabytesEncryption);
+            Controls.Add(lblmemoryInMegabytesDecrypted);
         }
     }
 }

@@ -1,0 +1,1 @@
+Помилка при зчитуванні файлу: The value could not be parsed.
