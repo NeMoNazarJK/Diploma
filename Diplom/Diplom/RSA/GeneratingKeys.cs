@@ -64,6 +64,16 @@ internal class GeneratingKeys
             file.WriteLine("Приватний ключ (d, n): ({0}, {1})", d, n);
             file.WriteLine("Час генерування приватного ключа: {0}", dTime.ToString());
         }
+        
+        using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Privatekey.pem"))
+        {
+            file.WriteLine("{0}, {1}", d, n);
+        }
+
+        using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Publickey.pem"))
+        {
+            file.WriteLine("{0}, {1}", e, n);
+        }
 
         return Tuple.Create(eTime, dTime);
     }
