@@ -33,16 +33,16 @@ namespace Diplom.RSA
                     TimeSpan encryptionTime = stopwatch.Elapsed;
                     EncryptionTextTime = encryptionTime.ToString();
 
-                    File.WriteAllText("..\\..\\..\\Files\\messageBlock.txt", messageBlock);
+                    //File.WriteAllText("..\\..\\..\\Files\\messageBlock.txt", messageBlock);
                     File.WriteAllText("..\\..\\..\\Files\\encrypted_blocks.txt", encryptedBlock);
                     File.WriteAllText("..\\..\\..\\Files\\encrypted_message.txt", encryptedMessage);
-                    File.WriteAllText("..\\..\\..\\Files\\fileEncryptionTextPath.txt", fileEncryptionTextPath);
+                    //File.WriteAllText("..\\..\\..\\Files\\fileEncryptionTextPath.txt", fileEncryptionTextPath);
 
-                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Fine.txt"))
-                    {
-                        file.WriteLine($"BigInteger e: {e}");
-                        file.WriteLine($"BigInteger n: {n}");
-                    }
+                    //using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Fine.txt"))
+                    //{
+                    //    file.WriteLine($"BigInteger e: {e}");
+                    //    file.WriteLine($"BigInteger n: {n}");
+                    //}
                 }
                 else
                 {
