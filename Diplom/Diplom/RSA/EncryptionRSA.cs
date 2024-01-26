@@ -59,7 +59,7 @@ namespace Diplom.RSA
                 }
             }
 
-          return EncryptionTextTime;
+            return (EncryptionTextTime);
         }
 
         public static (string, IEnumerable<BigInteger>, string, string) Encrypt(string message, BigInteger e, BigInteger n, string alphabet)

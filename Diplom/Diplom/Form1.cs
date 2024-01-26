@@ -5,6 +5,7 @@ using System.IO;
 using System.Diagnostics;
 using Diplom.RSA;
 using System.Numerics;
+using System.Collections.Generic;
 
 namespace Diplom
 {
@@ -31,6 +32,7 @@ namespace Diplom
         private string DecryptedTextTime = "";
         private string fileEncryptionTextPath = "";
         private string fileDecryptedKeyPath = "";
+        List<BigInteger> encryptedBlocks = new List<BigInteger>();
 
         private void InitializeFormElements()
         {

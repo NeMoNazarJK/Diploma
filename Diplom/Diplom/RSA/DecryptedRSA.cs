@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.IO;
 using System.Numerics;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Diplom.RSA
 {
@@ -15,12 +13,20 @@ namespace Diplom.RSA
         {
             DecryptedTextTime = "";
             string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
-
             string messageFilePath = "..\\..\\..\\Files\\encrypted_blocks.txt";
+            string message = string.Empty;
+            try
+            {
+                using (StreamReader sr = new StreamReader(messageFilePath))
+                {
+                    message = sr.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Помилка: " + ex.Message);
+            }
 
-            IEnumerable<BigInteger> fileDecryptedTextPath = ReadFileAsBigIntegers(messageFilePath); ;
-
-            File.WriteAllText("..\\..\\..\\Files\\fileDecryptedKeyPath.txt", fileDecryptedKeyPath);
             try
             {
                 string fileContent = File.ReadAllText(fileDecryptedKeyPath);
@@ -30,25 +36,18 @@ namespace Diplom.RSA
                 if (parts.Length >= 2)
                 {
                     BigInteger d = BigInteger.Parse(parts[0]);
-
                     BigInteger n = BigInteger.Parse(parts[1]);
 
+                    // Розшифруємо повідомлення
                     Stopwatch stopwatch = Stopwatch.StartNew();
-                    (string decryptedMessage, string decryptedMessageInNumbersfiles) = Decrypt(fileDecryptedTextPath, d, n, alphabet);
-
+                    (string decryptedMessage, string decryptedMessageInNumbersfiles) = Decrypt(message, d, n, alphabet);
                     stopwatch.Stop();
-                    TimeSpan encryptionTime = stopwatch.Elapsed;
-                    DecryptedTextTime = encryptionTime.ToString();
+                    TimeSpan decryptionTime = stopwatch.Elapsed;
+                    DecryptedTextTime = decryptionTime.ToString();
 
-                    //File.WriteAllText("..\\..\\..\\Files\\decrypted_InNumbers.txt", decryptedMessageInNumbersfiles);
+                    // Зберігаємо результати розшифрування
+                    File.WriteAllText("..\\..\\..\\Files\\decrypted_InNumbers.txt", decryptedMessageInNumbersfiles);
                     File.WriteAllText("..\\..\\..\\Files\\decrypted_Message.txt", decryptedMessage);
-                    //File.WriteAllText("..\\..\\..\\Files\\fileEncryptionTextPath.txt", fileDecryptedKeyPath);
-
-                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Fine.txt"))
-                    {
-                        file.WriteLine($"BigInteger d: {d}");
-                        file.WriteLine($"BigInteger n: {n}");
-                    }
                 }
                 else
                 {
@@ -76,46 +75,30 @@ namespace Diplom.RSA
             return DecryptedTextTime;
         }
 
-        static IEnumerable<BigInteger> ReadFileAsBigIntegers(string filePath)
+        static (string, string) Decrypt(string encryptedBlocks, BigInteger d, BigInteger n, string alphabet)
         {
-            // Читаем содержимое файла
-            string fileContent = File.ReadAllText(filePath);
+            List<BigInteger> encryptedNumbers = new List<BigInteger>();
 
-            // Разделяем строку на отдельные числа (предполагая, что они разделены, например, пробелами)
-            string[] numbersAsString = fileContent.Split(' ');
-
-            // Преобразуем каждую строку в BigInteger
-            foreach (var numberAsString in numbersAsString)
+            // Розділити зашифровані блоки і перетворити їх на числа
+            string[] encryptedBlockArray = encryptedBlocks.Split(' ');
+            foreach (string block in encryptedBlockArray)
             {
-                if (BigInteger.TryParse(numberAsString, out var bigInteger))
-                {
-                    yield return bigInteger;
-                }
-                else
-                {
-                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Erorr_6.txt"))
-                    {
-                        file.WriteLine($"Помилка перетворення рядка {numberAsString} в BigInteger");
-                    }
-                }
+                encryptedNumbers.Add(BigInteger.Parse(block));
             }
-        }
 
-        static (string, string) Decrypt(IEnumerable<BigInteger> encryptedBlocks, BigInteger d, BigInteger n, string alphabet)
-        {
-            int blockSize = n.ToString().Length - 1;
-            var decryptedBlocks = encryptedBlocks.Select(block => BigInteger.ModPow(block, d, n));
-            string decryptedMessageInNumbers = string.Join("", decryptedBlocks).PadLeft(encryptedBlocks.Count() * blockSize, '0');
-            string decryptedMessageInNumbersfiles = string.Join("", decryptedBlocks.Where(block => block != 0));
-            StringBuilder decryptedMessageBuilder = new StringBuilder();
-            for (int i = 0; i < decryptedMessageInNumbers.Length; i += 3)
+            // Розшифрувати кожен блок і об'єднати результати
+            StringBuilder decryptedMessage = new StringBuilder();
+            StringBuilder decryptedMessageInNumbers = new StringBuilder();
+
+            foreach (BigInteger block in encryptedNumbers)
             {
-                int index = int.Parse(decryptedMessageInNumbers.Substring(i, 2));
-                decryptedMessageBuilder.Append(alphabet[index]);
+                BigInteger decryptedBlock = BigInteger.ModPow(block, d, n);
+                int index = (int)decryptedBlock;
+                decryptedMessage.Append(alphabet[index]);
+                decryptedMessageInNumbers.Append($"{decryptedBlock} ");
             }
-            string decryptedMessage = decryptedMessageBuilder.ToString();
-            decryptedMessage = decryptedMessage.Replace("—", "");
-            return (decryptedMessage, decryptedMessageInNumbersfiles);
+
+            return (decryptedMessage.ToString(), decryptedMessageInNumbers.ToString());
         }
     }
 }
