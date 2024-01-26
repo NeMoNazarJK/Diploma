@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using Diplom.RSA;
 
 namespace Diplom
 {
@@ -14,13 +15,16 @@ namespace Diplom
         }
 
         private Button btnGeneratingkeys;
+        private Button btnEncryptionText;
         private TextBox txtTextSize;
         private TextBox txtGeneratingkeys;
         private Label lblPrivatekeyTime;
         private Label lblPublickeyTime;
+        private Label lblEncryptionTextTime;
 
         private string PrivatekeyTime = "";
         private string PublickeyTime = "";
+        private string EncryptionTextTime = "";
 
         private void InitializeFormElements()
         {
@@ -45,7 +49,7 @@ namespace Diplom
             txtTextSize = new TextBox
             {
                 Location = new Point(10, 10),
-                Size = new Size(400, 400),
+                Size = new Size(400, 150),
                 Text = ""
             };
 
@@ -63,6 +67,20 @@ namespace Diplom
                 Text = ""
             };
 
+            lblEncryptionTextTime = new Label
+            {
+                Location = new Point(750, 45),
+                AutoSize = true,
+                Text = ""
+            };
+
+            btnEncryptionText = new Button
+            {
+                Location = new Point(500, 80),
+                Size = new Size(180, 22),
+                Text = "Зашифрувати ведений текст"
+            };        
+
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 GeneratingKeys.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
@@ -70,11 +88,19 @@ namespace Diplom
                 lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
             };
 
+            btnEncryptionText.Click += (sender, e) =>
+            {
+                EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime);
+                lblEncryptionTextTime.Text = $"Час за шифрування: {EncryptionTextTime}";
+            };
+
             Controls.Add(btnGeneratingkeys);
+            Controls.Add(btnEncryptionText);
             Controls.Add(txtTextSize);
             Controls.Add(txtGeneratingkeys);
             Controls.Add(lblPrivatekeyTime);
             Controls.Add(lblPublickeyTime);
+            Controls.Add(lblEncryptionTextTime);
 
         }
     }
