@@ -1,0 +1,16 @@
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form1.resources
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.csproj.GenerateResource.cache
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.AssemblyInfoInputs.cache
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.AssemblyInfo.cs
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.csproj.CoreCompileInputs.cache
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\Diplom.exe
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\Diplom.deps.json
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\Diplom.runtimeconfig.json
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\Diplom.dll
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\Diplom.pdb
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.dll
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\refint\Diplom.dll
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.pdb
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.genruntimeconfig.cache
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\ref\Diplom.dll
