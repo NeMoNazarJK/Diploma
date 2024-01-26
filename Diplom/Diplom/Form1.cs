@@ -65,7 +65,7 @@ namespace Diplom
 
             btnGeneratingkeys.Click += (sender, e) =>
             {
-                RSA.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
+                GeneratingKeys.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
                 lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
                 lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
             };
