@@ -3,7 +3,6 @@ using System.Numerics;
 using System.Security.Cryptography;
 using System.Diagnostics;
 
-
 internal class GeneratingKeys
 {
     public static (string, string) OnGeneratingKeysClick(object sender, EventArgs e, string txtGeneratingkeysValue, out string PrivatekeyTime, out string PublickeyTime)

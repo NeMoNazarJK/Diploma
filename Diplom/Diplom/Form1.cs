@@ -38,7 +38,6 @@ namespace Diplom
         private double memoryInMegabytesK = 0.0;
         private double memoryInMegabytesE = 0.0;
         private double memoryInMegabytesD = 0.0;
-        private double memoryInMegabytesFinal = 0.0;
 
         private void InitializeFormElements()
         {

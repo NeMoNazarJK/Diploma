@@ -28,7 +28,6 @@ namespace Diplom.RSA
 
                     Stopwatch stopwatch = Stopwatch.StartNew();
                     (string encryptedMessage, IEnumerable<BigInteger> encryptedBlocks, string encryptedBlock, string messageBlock) = Encrypt(txtTextSize, e, n, alphabet);
-
                     stopwatch.Stop();
                     TimeSpan encryptionTime = stopwatch.Elapsed;
                     EncryptionTextTime = encryptionTime.ToString();
@@ -80,8 +79,8 @@ namespace Diplom.RSA
             var encryptedBlocks = messageBlocks.Select(block =>BigInteger.ModPow(BigInteger.Parse(block), e, n));
             string encryptedBlock = string.Join(" ", encryptedBlocks);
             string encryptedMessage = string.Join("", encryptedBlocks);
+
             return (encryptedMessage, encryptedBlocks, encryptedBlock, messageBlock);
         }
-
     }
 }

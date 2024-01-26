@@ -13,8 +13,10 @@ namespace Diplom.RSA
         {
             DecryptedTextTime = "";
             string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
+            
             string messageFilePath = "..\\..\\..\\Files\\encrypted_blocks.txt";
             string message = string.Empty;
+
             try
             {
                 using (StreamReader sr = new StreamReader(messageFilePath))
