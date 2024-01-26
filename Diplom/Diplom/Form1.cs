@@ -19,8 +19,8 @@ namespace Diplom
         private Label lblPrivatekeyTime;
         private Label lblPublickeyTime;
 
-        private string PrivatekeyTime;
-        private string PublickeyTime;
+        private string PrivatekeyTime = "";
+        private string PublickeyTime = "";
 
         private void InitializeFormElements()
         {
@@ -65,7 +65,7 @@ namespace Diplom
 
             btnGeneratingkeys.Click += (sender, e) =>
             {
-                RSA.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, PrivatekeyTime, PublickeyTime);
+                RSA.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
                 lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
                 lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
             };

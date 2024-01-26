@@ -6,8 +6,11 @@ using System.Diagnostics;
 
 internal class RSA
 {
-    public static Tuple<string, string> OnGeneratingKeysClick(object sender, EventArgs e, string txtGeneratingkeysValue, string PrivatekeyTime, string PublickeyTime)
+    public static (string, string) OnGeneratingKeysClick(object sender, EventArgs e, string txtGeneratingkeysValue, out string PrivatekeyTime, out string PublickeyTime)
     {
+        PrivatekeyTime = "";
+        PublickeyTime = "";
+
         if (int.TryParse(txtGeneratingkeysValue, out int bitLengthTXT))
         {
             var times = rsa(bitLengthTXT);
@@ -15,13 +18,9 @@ internal class RSA
             TimeSpan dTime = times.Item2;
             PrivatekeyTime = dTime.ToString();
             PublickeyTime = eTime.ToString();
-            return Tuple.Create(PrivatekeyTime, PublickeyTime);
+            return (PrivatekeyTime, PublickeyTime);
         }
-        else
-        {
-            // Повернення значення Tuple з дефолтними значеннями
-            return Tuple.Create("", "");
-        }
+        return("", "");
     }
 
     public static Tuple<TimeSpan, TimeSpan> rsa(int bitLengthTXT)
