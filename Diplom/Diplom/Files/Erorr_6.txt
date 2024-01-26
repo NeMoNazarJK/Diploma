@@ -1,0 +1,1 @@
+Помилка відкриття файлу: An error occurred trying to start process '..\..\..\Files\decrypted_Message.txt' with working directory 'D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows'. The specified executable is not a valid application for this OS platform.

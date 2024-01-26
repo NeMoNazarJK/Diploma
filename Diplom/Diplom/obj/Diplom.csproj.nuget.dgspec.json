@@ -43,6 +43,10 @@
             "EPPlus": {
               "target": "Package",
               "version": "[7.0.8, )"
+            },
+            "HIC.System.Windows.Forms.DataVisualization": {
+              "target": "Package",
+              "version": "[1.0.1, )"
             }
           },
           "imports": [

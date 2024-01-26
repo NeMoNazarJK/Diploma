@@ -6,6 +6,7 @@ using System.Diagnostics;
 using Diplom.RSA;
 using System.Numerics;
 using System.Collections.Generic;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Diplom
 {
@@ -19,6 +20,8 @@ namespace Diplom
         private Button btnGeneratingkeys;
         private Button btnEncryptionText;
         private Button btnDecryptedText;
+        private Button OpenFiletClickE;
+        private Button OpenFiletClickD;
         private TextBox txtTextSize;
         private TextBox txtGeneratingkeys;
         private Label lblPrivatekeyTime;
@@ -28,6 +31,7 @@ namespace Diplom
         private Label lblmemoryInMegabytesKey;
         private Label lblmemoryInMegabytesEncryption;
         private Label lblmemoryInMegabytesDecrypted;
+
 
         private string PrivatekeyTime = "";
         private string PublickeyTime = "";
@@ -129,6 +133,20 @@ namespace Diplom
                 Text = "Розшифрування тексту"
             };
 
+            OpenFiletClickE = new Button
+            {
+                Location = new Point(10, 100),
+                Size = new Size(150, 45),
+                Text = "Відкрити зашифрований текст"
+            };
+
+            OpenFiletClickD = new Button
+            {
+                Location = new Point(160, 100),
+                Size = new Size(150, 45),
+                Text = "Відкрити розшифрований текст"
+            };
+
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 using (Process process = Process.GetCurrentProcess())
@@ -173,6 +191,16 @@ namespace Diplom
                 lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для для розшифрування тексту";
             };
 
+            OpenFiletClickE.Click += (sender, e) =>
+            {
+                OpenFile.OpenFiletClickEncryption(sender, e);
+            };
+
+            OpenFiletClickD.Click += (sender, e) =>
+            {
+                OpenFile.OpenFiletClickDecrypted(sender, e);
+            };
+
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
             lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
             lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для розшифрування тексту";
@@ -184,6 +212,8 @@ namespace Diplom
             Controls.Add(btnGeneratingkeys);
             Controls.Add(btnEncryptionText);
             Controls.Add(btnDecryptedText);
+            Controls.Add(OpenFiletClickE);
+            Controls.Add(OpenFiletClickD);
             Controls.Add(txtTextSize);
             Controls.Add(txtGeneratingkeys);
             Controls.Add(lblPrivatekeyTime);
