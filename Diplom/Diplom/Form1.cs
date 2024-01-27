@@ -34,6 +34,7 @@ namespace Diplom
         private Label lblmemoryInMegabytesEncryption;
         private Label lblmemoryInMegabytesDecrypted;
 
+        Form2 f2;
 
         private string PrivatekeyTime = "";
         private string PublickeyTime = "";
@@ -222,6 +223,11 @@ namespace Diplom
                 OpenFile.OpenFiletClickАdditional(sender, e);
             };
 
+            OpenFormGT.Click += (sender, e) =>
+            {
+                oHacToolStrip_Click(sender, e);
+            };
+
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
             lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
             lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для розшифрування тексту";
@@ -246,6 +252,12 @@ namespace Diplom
             Controls.Add(lblmemoryInMegabytesKey);
             Controls.Add(lblmemoryInMegabytesEncryption);
             Controls.Add(lblmemoryInMegabytesDecrypted);
+        }
+
+        private void oHacToolStrip_Click(object sender, EventArgs e)
+        {
+            f2 = new Form2();
+            f2.Show();
         }
     }
 }
