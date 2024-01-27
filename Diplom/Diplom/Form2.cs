@@ -95,7 +95,7 @@ namespace Diplom
                 }
             }
 
-            double[] M = MList.ToArray(); ;
+            double[] M = MList.ToArray();
 
             ChartArea chartArea = new ChartArea();
             ChartGenerating.ChartAreas.Add(chartArea);
@@ -116,7 +116,7 @@ namespace Diplom
             series.LegendText = series.Name;
             series.Color = Color.Red;
 
-            chartArea.AxisX.Title = "Розмір ключа N(біт)";
+            chartArea.AxisX.Title = "Розмір ключа N (біт)";
             chartArea.AxisX.TitleFont = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
 
             chartArea.AxisY.Title = "Час (с)";
