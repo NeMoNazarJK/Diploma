@@ -26,8 +26,6 @@ internal class GeneratingKeys
     {
         int bitLength = bitLengthTXT;
 
-        string Time_Key = "Time_Key";
-
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
         BigInteger p = GeneratePrime(bitLength);

@@ -32,12 +32,13 @@ namespace Diplom
                         outputFile.Write(value);
                     }
                 }
-                MessageBox.Show("Значення успішно зчитані з файлів та записані в output.txt.");
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Виникла помилка: {ex.Message}");
+                using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Erorr_12.txt"))
+                {
+                    file.WriteLine($"Виникла помилка: {ex.Message}");
+                }
             }
         }   
     }
