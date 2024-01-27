@@ -225,7 +225,7 @@ namespace Diplom
 
             OpenFormGT.Click += (sender, e) =>
             {
-                oHacToolStrip_Click(sender, e);
+                oHacToolStrip_Click(sender, e, f2);
             };
 
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
@@ -254,10 +254,10 @@ namespace Diplom
             Controls.Add(lblmemoryInMegabytesDecrypted);
         }
 
-        private void oHacToolStrip_Click(object sender, EventArgs e)
+        private void oHacToolStrip_Click(object sender, EventArgs e, Form f)
         {
-            f2 = new Form2();
-            f2.Show();
+            f = new Form2();
+            f.Show();
         }
     }
 }
