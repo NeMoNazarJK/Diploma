@@ -26,6 +26,8 @@ internal class GeneratingKeys
     {
         int bitLength = bitLengthTXT;
 
+        string Time_Key = "Time_Key";
+
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
         BigInteger p = GeneratePrime(bitLength);
@@ -81,7 +83,7 @@ internal class GeneratingKeys
             file.WriteLine("{0}, {1}", e, n);
         }
 
-        using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Key.txt"))
+        using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Key_" + bitLength + "_á³ò.txt"))
         {
             file.WriteLine("{0}", combinedTimeZ.TotalSeconds);
         }

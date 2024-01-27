@@ -9,9 +9,10 @@ namespace Diplom.RSA
 {
     internal class EncryptionRSA
     {
-        public static string OnEncryptionTextClick(object sender, EventArgs a, string txtTextSize, out string EncryptionTextTime, string fileEncryptionTextPath)
+        public static string OnEncryptionTextClick(object sender, EventArgs a, string txtTextSize, out string EncryptionTextTime, string fileEncryptionTextPath, string bitLengthTXT)
         {
             EncryptionTextTime = "";
+            int bitLength = int.Parse(bitLengthTXT);
             string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
 
             try
@@ -35,7 +36,7 @@ namespace Diplom.RSA
                     File.WriteAllText("..\\..\\..\\Files\\encrypted_blocks.txt", encryptedBlock);
                     File.WriteAllText("..\\..\\..\\Files\\encrypted_message.txt", encryptedMessage);
 
-                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Encryption.txt"))
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Encryption_" + bitLength + "_біт.txt"))
                     {
                         file.WriteLine("{0}", encryptionTime.TotalSeconds);
                     }

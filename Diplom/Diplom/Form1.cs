@@ -185,7 +185,7 @@ namespace Diplom
                     {
                         fileEncryptionTextPath = openFileDialog.FileName;
                     }
-                    EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime, fileEncryptionTextPath);
+                    EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime, fileEncryptionTextPath, txtGeneratingkeys.Text);
                     lblEncryptionTextTime.Text = $"Час шифрування: {EncryptionTextTime}";
                     memoryInMegabytesE = process.PrivateMemorySize64 / (1024 * 1024);
                 }
@@ -201,7 +201,7 @@ namespace Diplom
                     {
                         fileDecryptedKeyPath = openFileDialog.FileName;
                     }
-                    DecryptedRSA.OnDecryptedTextClick(sender, e, out DecryptedTextTime, fileDecryptedKeyPath);
+                    DecryptedRSA.OnDecryptedTextClick(sender, e, out DecryptedTextTime, fileDecryptedKeyPath, txtGeneratingkeys.Text);
                     lblDecryptedTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
                     memoryInMegabytesD = process.PrivateMemorySize64 / (1024 * 1024);
                 }

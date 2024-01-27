@@ -9,9 +9,10 @@ namespace Diplom.RSA
 {
     internal class DecryptedRSA
     {
-        public static string OnDecryptedTextClick(object sender, EventArgs a, out string DecryptedTextTime, string fileDecryptedKeyPath)
+        public static string OnDecryptedTextClick(object sender, EventArgs a, out string DecryptedTextTime, string fileDecryptedKeyPath, string bitLengthTXT)
         {
             DecryptedTextTime = "";
+            int bitLength = int.Parse(bitLengthTXT);
             string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
             
             string messageFilePath = "..\\..\\..\\Files\\encrypted_blocks.txt";
@@ -48,7 +49,7 @@ namespace Diplom.RSA
 
                     File.WriteAllText("..\\..\\..\\Files\\decrypted_Message.txt", decryptedMessage);
 
-                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Decrypted.txt"))
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Decrypted_" + bitLength + "_біт.txt"))
                     {
                         file.WriteLine("{0}", decryptionTime.TotalSeconds);
                     }
