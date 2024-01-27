@@ -47,6 +47,11 @@ namespace Diplom.RSA
                     DecryptedTextTime = decryptionTime.ToString();
 
                     File.WriteAllText("..\\..\\..\\Files\\decrypted_Message.txt", decryptedMessage);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Decrypted.txt"))
+                    {
+                        file.WriteLine("{0}", decryptionTime.TotalSeconds);
+                    }
                 }
                 else
                 {

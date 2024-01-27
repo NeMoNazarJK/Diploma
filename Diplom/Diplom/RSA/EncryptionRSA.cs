@@ -34,6 +34,11 @@ namespace Diplom.RSA
 
                     File.WriteAllText("..\\..\\..\\Files\\encrypted_blocks.txt", encryptedBlock);
                     File.WriteAllText("..\\..\\..\\Files\\encrypted_message.txt", encryptedMessage);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Encryption.txt"))
+                    {
+                        file.WriteLine("{0}", encryptionTime.TotalSeconds);
+                    }
                 }
                 else
                 {

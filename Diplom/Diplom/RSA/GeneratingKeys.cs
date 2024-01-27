@@ -37,8 +37,11 @@ internal class GeneratingKeys
         stopwatch.Stop();
         TimeSpan qTime = stopwatch.Elapsed;
 
+        stopwatch.Restart();
         BigInteger n = p * q;
         BigInteger phi = (p - 1) * (q - 1);
+        stopwatch.Stop();
+        TimeSpan nphiTime = stopwatch.Elapsed;
 
         stopwatch.Restart();
         BigInteger e = GetRandomCoprime(phi);
@@ -49,6 +52,10 @@ internal class GeneratingKeys
         BigInteger d = ModInverse(e, phi);
         stopwatch.Stop();
         TimeSpan dTime = stopwatch.Elapsed;
+
+        TimeSpan combinedTimeE = pTime + qTime + nphiTime + eTime;
+        TimeSpan combinedTimeD = pTime + qTime + nphiTime + dTime;
+        TimeSpan combinedTimeZ = pTime + qTime + nphiTime + eTime + dTime;
 
         using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\additional_information_RSA.txt"))
         {
@@ -63,7 +70,7 @@ internal class GeneratingKeys
             file.WriteLine("Приватний ключ (d, n): ({0}, {1})", d, n);
             file.WriteLine("Час генерування приватного ключа: {0}", dTime.ToString());
         }
-        
+
         using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Privatekey.pem"))
         {
             file.WriteLine("{0}, {1}", d, n);
@@ -74,7 +81,12 @@ internal class GeneratingKeys
             file.WriteLine("{0}, {1}", e, n);
         }
 
-        return Tuple.Create(eTime, dTime);
+        using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Key.txt"))
+        {
+            file.WriteLine("{0}", combinedTimeZ.TotalSeconds);
+        }
+
+        return Tuple.Create(combinedTimeE, combinedTimeD);
     }
 
     public static BigInteger GeneratePrime(int bitLength)
