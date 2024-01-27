@@ -84,7 +84,7 @@ internal class GeneratingKeys
         }
 
         using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Key_" + bitLength + "_á³ò.txt"))
-        {
+        {             
             file.WriteLine("{0}", combinedTimeZ.TotalSeconds);
         }
 

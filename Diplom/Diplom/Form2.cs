@@ -22,6 +22,8 @@ namespace Diplom
         private Button SaveGeneratingKey;
         private Button BuildingGeneratingKey;
 
+        private string Time_Generating_Key = "..\\..\\..\\Time\\Time_Key.txt";
+
         private void InitializeFormElements()
         {
             this.Size = new Size(1920, 1080);
@@ -48,12 +50,11 @@ namespace Diplom
                 Text = "Зберегти графік Генерація N-бітного ключа для RSA",
             };
 
-            int[] N = new int[] { 256, 512, 1024, 2048, 4096, 8192 };
-            int[] M = new int[] { 23, 12, 32, 11, 54, 20 };
+            int[] N = new int[] { 256, 512, 1024, 2048 };
 
             BuildingGeneratingKey.Click += (sender, e) =>
             {
-                BuildingButton_Click(sender, e, N, M, ChartGeneratingKey);
+                BuildingButton_Click(sender, e, N, ChartGeneratingKey, Time_Generating_Key);
             };
 
             string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA";
@@ -68,15 +69,41 @@ namespace Diplom
             Controls.Add(SaveGeneratingKey);
         }
 
-        private void BuildingButton_Click(object sender, EventArgs e, int[] N, int[] M, Chart ChartGenerating)
-        {
+        private void BuildingButton_Click(object sender, EventArgs e, int[] N, Chart ChartGenerating, string file)
+        {            
+            string filePath = file;
+            string content = File.ReadAllText(filePath);
+            string[] valuesAsString = content.Split('+');
+
+            List<double> MList = new List<double>();
+
+            foreach (string valueStr in valuesAsString)
+            {
+                if (!string.IsNullOrEmpty(valueStr))
+                {
+                    double value;
+                    if (double.TryParse(valueStr, out value))
+                    {
+                        MList.Add(value);
+                    }
+                    else
+                    {
+                        // Обробка помилки, якщо не вдається конвертувати в число
+                        MessageBox.Show($"Неможливо конвертувати рядок '{valueStr}' в число.");
+                        return; // або використовуйте continue, якщо хочете продовжити з іншими значеннями
+                    }
+                }
+            }
+
+            double[] M = MList.ToArray(); ;
+
             ChartArea chartArea = new ChartArea();
             ChartGenerating.ChartAreas.Add(chartArea);
 
             Series series = new Series();
             ChartGenerating.Series.Add(series);
 
-            series.ChartType = SeriesChartType.Spline;
+            series.ChartType = SeriesChartType.Line;
 
             for (int i = 0; i < Math.Min(N.Length, M.Length); i++)
             {
@@ -89,10 +116,10 @@ namespace Diplom
             series.LegendText = series.Name;
             series.Color = Color.Red;
 
-            chartArea.AxisX.Title = "Довжина ключа";
+            chartArea.AxisX.Title = "Розмір ключа N(біт)";
             chartArea.AxisX.TitleFont = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
 
-            chartArea.AxisY.Title = "Час";
+            chartArea.AxisY.Title = "Час (с)";
             chartArea.AxisY.TitleFont = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
 
             Title seriesTitle = new Title();
