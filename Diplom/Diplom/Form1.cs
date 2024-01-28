@@ -257,6 +257,8 @@ namespace Diplom
         private void oHacToolStrip_Click(object sender, EventArgs e, Form f)
         {
             ReadingandWriting.PerformReadingAndWritingGK(sender, e);
+            ReadingandWriting.PerformReadingAndWritingE(sender, e);
+            ReadingandWriting.PerformReadingAndWritingD(sender, e);
             f = new Form2();
             f.Show();
         }

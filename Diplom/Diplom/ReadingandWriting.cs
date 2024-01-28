@@ -16,7 +16,9 @@ namespace Diplom
                     "..\\..\\..\\Time\\Time_Key_256_біт.txt",
                     "..\\..\\..\\Time\\Time_Key_512_біт.txt",
                     "..\\..\\..\\Time\\Time_Key_1024_біт.txt",
-                    "..\\..\\..\\Time\\Time_Key_2048_біт.txt"
+                    "..\\..\\..\\Time\\Time_Key_2048_біт.txt",
+                    "..\\..\\..\\Time\\Time_Key_4096_біт.txt",
+                    "..\\..\\..\\Time\\Time_Key_8192_біт.txt"
                 };
 
                 string outputFilePath = "..\\..\\..\\Time\\Time_Key.txt";
@@ -40,6 +42,78 @@ namespace Diplom
                     file.WriteLine($"Виникла помилка: {ex.Message}");
                 }
             }
-        }   
+        }
+
+        public static void PerformReadingAndWritingE(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] inputFilePaths = {
+                    "..\\..\\..\\Time\\Time_Encryption_256_біт.txt",
+                    "..\\..\\..\\Time\\Time_Encryption_512_біт.txt",
+                    "..\\..\\..\\Time\\Time_Encryption_1024_біт.txt",
+                    "..\\..\\..\\Time\\Time_Encryption_2048_біт.txt",
+                    "..\\..\\..\\Time\\Time_Encryption_4096_біт.txt",
+                    "..\\..\\..\\Time\\Time_Encryption_8192_біт.txt"
+                };
+
+                string outputFilePath = "..\\..\\..\\Time\\Time_Encryption.txt";
+
+                using (StreamWriter outputFile = new StreamWriter(outputFilePath))
+                {
+                    foreach (string inputFilePath in inputFilePaths)
+                    {
+                        string value = File.ReadAllText(inputFilePath);
+
+                        value = value.Replace(Environment.NewLine, "+");
+
+                        outputFile.Write(value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Erorr_13.txt"))
+                {
+                    file.WriteLine($"Виникла помилка: {ex.Message}");
+                }
+            }
+        }
+
+        public static void PerformReadingAndWritingD(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] inputFilePaths = {
+                    "..\\..\\..\\Time\\Time_Decrypted_256_біт.txt",
+                    "..\\..\\..\\Time\\Time_Decrypted_512_біт.txt",
+                    "..\\..\\..\\Time\\Time_Decrypted_1024_біт.txt",
+                    "..\\..\\..\\Time\\Time_Decrypted_2048_біт.txt",
+                    "..\\..\\..\\Time\\Time_Decrypted_4096_біт.txt",
+                    "..\\..\\..\\Time\\Time_Decrypted_8192_біт.txt"
+                };
+
+                string outputFilePath = "..\\..\\..\\Time\\Time_Decrypted.txt";
+
+                using (StreamWriter outputFile = new StreamWriter(outputFilePath))
+                {
+                    foreach (string inputFilePath in inputFilePaths)
+                    {
+                        string value = File.ReadAllText(inputFilePath);
+
+                        value = value.Replace(Environment.NewLine, "+");
+
+                        outputFile.Write(value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Erorr_13.txt"))
+                {
+                    file.WriteLine($"Виникла помилка: {ex.Message}");
+                }
+            }
+        }
     }
 }
