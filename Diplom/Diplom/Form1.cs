@@ -183,6 +183,8 @@ namespace Diplom
                     memoryInMegabytesK = process.PrivateMemorySize64 / (1024 * 1024);
                 }
                 lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
+
+                MessageBox.Show("Ключі успішно згенеровані.");
             };
 
             btnEncryptionText.Click += (sender, e) =>
@@ -199,6 +201,8 @@ namespace Diplom
                     memoryInMegabytesE = process.PrivateMemorySize64 / (1024 * 1024);
                 }
                 lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
+
+                MessageBox.Show("За шифрування виконано успішно.");
             };
 
             btnDecryptedText.Click += (sender, e) =>
@@ -215,6 +219,8 @@ namespace Diplom
                     memoryInMegabytesD = process.PrivateMemorySize64 / (1024 * 1024);
                 }
                 lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для для розшифрування тексту";
+
+                MessageBox.Show("Розшифрування виконано успішно.");
             };
 
             OpenFiletClickE.Click += (sender, e) =>
@@ -280,9 +286,6 @@ namespace Diplom
 
         private void oHacToolStrip3_Click(object sender, EventArgs e, Form f)
         {
-            ReadingandWriting.PerformReadingAndWritingGK(sender, e);
-            ReadingandWriting.PerformReadingAndWritingE(sender, e);
-            ReadingandWriting.PerformReadingAndWritingD(sender, e);
             f = new Form3();
             f.Show();
         }
