@@ -24,6 +24,7 @@ namespace Diplom
         private Button OpenFiletClickD;
         private Button OpenFiletClickA;
         private Button OpenFormGT;
+        private Button OpenFormM;
         private TextBox txtTextSize;
         private TextBox txtGeneratingkeys;
         private Label lblPrivatekeyTime;
@@ -35,6 +36,7 @@ namespace Diplom
         private Label lblmemoryInMegabytesDecrypted;
 
         Form2 f2;
+        Form3 f3;
 
         private string PrivatekeyTime = "";
         private string PublickeyTime = "";
@@ -164,6 +166,13 @@ namespace Diplom
                 Text = "Відкрити графік часу"
             };
 
+            OpenFormM = new Button
+            {
+                Location = new Point(945, 100),
+                Size = new Size(150, 45),
+                Text = "Відкрити графік пам'яті"
+            };
+
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 using (Process process = Process.GetCurrentProcess())
@@ -225,7 +234,12 @@ namespace Diplom
 
             OpenFormGT.Click += (sender, e) =>
             {
-                oHacToolStrip_Click(sender, e, f2);
+                oHacToolStrip2_Click(sender, e, f2);
+            };
+
+            OpenFormM.Click += (sender, e) =>
+            {
+                oHacToolStrip3_Click(sender, e, f3);
             };
 
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
@@ -243,6 +257,7 @@ namespace Diplom
             Controls.Add(OpenFiletClickD);
             Controls.Add(OpenFiletClickA);
             Controls.Add(OpenFormGT);
+            Controls.Add(OpenFormM);
             Controls.Add(txtTextSize);
             Controls.Add(txtGeneratingkeys);
             Controls.Add(lblPrivatekeyTime);
@@ -254,12 +269,21 @@ namespace Diplom
             Controls.Add(lblmemoryInMegabytesDecrypted);
         }
 
-        private void oHacToolStrip_Click(object sender, EventArgs e, Form f)
+        private void oHacToolStrip2_Click(object sender, EventArgs e, Form f)
         {
             ReadingandWriting.PerformReadingAndWritingGK(sender, e);
             ReadingandWriting.PerformReadingAndWritingE(sender, e);
             ReadingandWriting.PerformReadingAndWritingD(sender, e);
             f = new Form2();
+            f.Show();
+        }
+
+        private void oHacToolStrip3_Click(object sender, EventArgs e, Form f)
+        {
+            ReadingandWriting.PerformReadingAndWritingGK(sender, e);
+            ReadingandWriting.PerformReadingAndWritingE(sender, e);
+            ReadingandWriting.PerformReadingAndWritingD(sender, e);
+            f = new Form3();
             f.Show();
         }
     }
