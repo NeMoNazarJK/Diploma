@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using ClosedXML.Excel;
 
 namespace Diplom
 {
@@ -25,8 +26,11 @@ namespace Diplom
         private DataGridView dataGridViewEncryption;
         private DataGridView dataGridViewDecrypted;
         private Button SaveGeneratingKey;
+        private Button SaveGeneratingKeyT;
         private Button SaveEncryption;
+        private Button SaveEncryptionT;
         private Button SaveDecrypted;
+        private Button SaveDecryptedT;
         private Button BuildingGeneratingKey;
         private Button BuildingEncryption;
         private Button BuildingDecrypted;
@@ -34,6 +38,12 @@ namespace Diplom
         private string Time_Generating_Key = "..\\..\\..\\Time\\Time_Key.txt";
         private string Time_Encryption = "..\\..\\..\\Time\\Time_Encryption.txt";
         private string Time_Decrypted = "..\\..\\..\\Time\\Time_Decrypted.txt";
+        private string Table_Generating_Key = "GeneratingKeyTable";
+        private string Table_Encryption = "EncryptionTable";
+        private string Table_Decrypted = "DecryptedTable";
+        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA";
+        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA";
+        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA";
 
         private void InitializeFormElements()
         {
@@ -87,11 +97,25 @@ namespace Diplom
                 Text = "Зберегти графік Генерація N-бітного ключа для RSA",
             };
 
+            SaveGeneratingKeyT = new Button()
+            {
+                Location = new Point(1000, 130),
+                Size = new Size(250, 45),
+                Text = "Зберегти таблицю Генерація N-бітного ключа для RSA",
+            };
+
             SaveEncryption = new Button()
             {
                 Location = new Point(1000, 410),
                 Size = new Size(250, 45),
                 Text = "Зберегти графік Шифрування N-бітного ключа для RSA",
+            };
+
+            SaveEncryptionT = new Button()
+            {
+                Location = new Point(1000, 470),
+                Size = new Size(250, 45),
+                Text = "Зберегти таблицю Шифрування N-бітного ключа для RSA",
             };
 
             SaveDecrypted = new Button()
@@ -101,30 +125,32 @@ namespace Diplom
                 Text = "Зберегти графік Розшифрування N-бітного ключа для RSA",
             };
 
+            SaveDecryptedT = new Button()
+            {
+                Location = new Point(1000, 810),
+                Size = new Size(250, 45),
+                Text = "Зберегти графік Розшифрування N-бітного ключа для RSA",
+            };
+
             dataGridViewGK = new DataGridView()
             {
-                Location = new System.Drawing.Point(1300, 10),
-                Size = new System.Drawing.Size(400, 200),
+                Location = new Point(1260, 10),
+                Size = new Size(570, 200),
             };
 
             dataGridViewEncryption = new DataGridView()
             {
-                Location = new System.Drawing.Point(1300, 350),
-                Size = new System.Drawing.Size(400, 200),
+                Location = new Point(1260, 350),
+                Size = new Size(570, 200),
             };
 
             dataGridViewDecrypted = new DataGridView()
             {
-                Location = new System.Drawing.Point(1300, 690),
-                Size = new System.Drawing.Size(400, 200),
+                Location = new Point(1260, 690),
+                Size = new Size(570, 200),
             };
 
             int[] N = new int[] { 256, 512, 1024, 2048, 4096, 8192 };
-
-            string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA";
-            string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA";
-            string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA";
-
 
             BuildingGeneratingKey.Click += (sender, e) =>
             {
@@ -156,6 +182,21 @@ namespace Diplom
                 SaveButton_Click(sender, e, saveDialogFileNameDecrypted, ChartDecrypted);
             };
 
+            SaveGeneratingKeyT.Click += (sender, e) =>
+            {
+                SaveTable_Click(sender, e, dataGridViewGK, Table_Generating_Key);
+            };
+
+            SaveEncryptionT.Click += (sender, e) =>
+            {
+                SaveTable_Click(sender, e, dataGridViewEncryption, Table_Encryption);
+            };
+
+            SaveDecryptedT.Click += (sender, e) =>
+            {
+                SaveTable_Click(sender, e, dataGridViewDecrypted, Table_Decrypted);
+            };
+
             Controls.Add(ChartGeneratingKey);
             Controls.Add(ChartEncryption);
             Controls.Add(ChartDecrypted);
@@ -163,8 +204,11 @@ namespace Diplom
             Controls.Add(BuildingEncryption);
             Controls.Add(BuildingDecrypted);
             Controls.Add(SaveGeneratingKey);
+            Controls.Add(SaveGeneratingKeyT);
             Controls.Add(SaveEncryption);
+            Controls.Add(SaveEncryptionT);
             Controls.Add(SaveDecrypted);
+            Controls.Add(SaveDecryptedT);
             Controls.Add(dataGridViewGK);
             Controls.Add(dataGridViewEncryption);
             Controls.Add(dataGridViewDecrypted);
@@ -212,6 +256,8 @@ namespace Diplom
 
             series.ChartType = SeriesChartType.Line;
 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             for (int i = 0; i < Math.Min(N.Length, M.Length); i++)
             {
                 series.Points.AddXY(N[i], M[i]);
@@ -249,6 +295,40 @@ namespace Diplom
 
             chart1.SaveImage(savePath, ChartImageFormat.Png);
             MessageBox.Show("Зображення збережено.");
+        }
+
+        private void SaveTable_Click(object sender, EventArgs e, DataGridView dataGridViewT, string TableFile)
+        {
+            SaveDataGridViewToExcel(dataGridViewT, TableFile);
+        }
+
+        private void SaveDataGridViewToExcel(DataGridView dataGridView, string fileName)
+        {
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add(fileName);
+
+                for (int i = 1; i <= dataGridView.Columns.Count; i++)
+                {
+                    worksheet.Cell(1, i).Value = dataGridView.Columns[i - 1].HeaderText;
+                }
+
+                for (int i = 0; i < dataGridView.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridView.Columns.Count; j++)
+                    {
+                        object cellValue = dataGridView.Rows[i].Cells[j].Value;
+                        string stringValue = cellValue != null ? cellValue.ToString() : "";
+
+                        worksheet.Cell(i + 2, j + 1).Value = stringValue;
+                    }
+                }
+
+                string excelPath = Path.Combine("..\\..\\..\\Table\\", fileName + ".xlsx");
+                workbook.SaveAs(excelPath);
+
+                MessageBox.Show("Таблицю збережено.");
+            }
         }
     }
 }

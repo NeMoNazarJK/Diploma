@@ -52,3 +52,10 @@ D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\runtimes\win-x64\native
 D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form2.resources
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\Microsoft.Office.Interop.Excel.dll
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\ClosedXML.dll
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\DocumentFormat.OpenXml.dll
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\ExcelNumberFormat.dll
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\Irony.dll
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\SixLabors.Fonts.dll
+D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\XLParser.dll
