@@ -15,6 +15,8 @@ namespace Diplom
         public Form1()
         {
             InitializeFormElements();
+
+            Icon = new Icon("..\\..\\..\\Icon\\Encryption.ico");
         }
 
         private Button btnGeneratingkeys;
@@ -171,14 +173,14 @@ namespace Diplom
                 Location = new Point(945, 100),
                 Size = new Size(150, 45),
                 Text = "Відкрити графік пам'яті"
-            };
-
-            int bitLength = int.Parse(txtGeneratingkeys.Text);
+            };            
 
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 using (Process process = Process.GetCurrentProcess())
                 {
+                    int bitLength = int.Parse(txtGeneratingkeys.Text);
+
                     GeneratingKeys.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
                     lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
                     lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
@@ -198,6 +200,8 @@ namespace Diplom
             {
                 using (Process process = Process.GetCurrentProcess())
                 {
+                    int bitLength = int.Parse(txtGeneratingkeys.Text);
+
                     OpenFileDialog openFileDialog = new OpenFileDialog();
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -221,6 +225,8 @@ namespace Diplom
             {
                 using (Process process = Process.GetCurrentProcess())
                 {
+                    int bitLength = int.Parse(txtGeneratingkeys.Text);
+
                     OpenFileDialog openFileDialog = new OpenFileDialog();
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -303,6 +309,9 @@ namespace Diplom
 
         private void oHacToolStrip3_Click(object sender, EventArgs e, Form f)
         {
+            ReadingandWriting.PerformReadingAndWritingGKMemory(sender, e);
+            ReadingandWriting.PerformReadingAndWritingEMemory(sender, e);
+            ReadingandWriting.PerformReadingAndWritingDMemory(sender, e);
             f = new Form3();
             f.Show();
         }

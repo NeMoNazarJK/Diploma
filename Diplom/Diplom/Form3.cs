@@ -15,7 +15,9 @@ namespace Diplom
     {
         public Form3()
         {
-            InitializeComponent();
+            InitializeFormElements();
+
+            Icon = new Icon("..\\..\\..\\Icon\\Schedule.ico");
         }
 
         private Chart ChartGeneratingKey;
@@ -52,7 +54,7 @@ namespace Diplom
         {
             this.Size = new Size(1920, 1080);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "RSA_Graphs";
+            this.Text = "RSA Graphs Memory";
 
             ChartGeneratingKey = new Chart()
             {
