@@ -8,7 +8,7 @@ namespace Diplom
 {
     internal class ReadingandWriting
     {
-        public static void PerformReadingAndWritingGK(object sender, EventArgs e)
+        public static void PerformReadingAndWritingGKTime(object sender, EventArgs e)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Diplom
             }
         }
 
-        public static void PerformReadingAndWritingE(object sender, EventArgs e)
+        public static void PerformReadingAndWritingETime(object sender, EventArgs e)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace Diplom
             }
         }
 
-        public static void PerformReadingAndWritingD(object sender, EventArgs e)
+        public static void PerformReadingAndWritingDTime(object sender, EventArgs e)
         {
             try
             {

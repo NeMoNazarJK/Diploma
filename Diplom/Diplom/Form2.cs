@@ -43,9 +43,9 @@ namespace Diplom
         private string Table_Generating_Key = "GeneratingKeyTableTime";
         private string Table_Encryption = "EncryptionTableTime";
         private string Table_Decrypted = "DecryptedTableTime";
-        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA";
-        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA";
-        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA";
+        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA (час)";
+        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA (час)";
+        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA (час)";
         private string DialogTime = "Час (с)";
         private string pointonacoordinate = "Точка на координаті часу (с)";
 

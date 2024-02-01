@@ -40,9 +40,9 @@ namespace Diplom
         private string Table_Generating_Key = "GeneratingKeyTableMemory";
         private string Table_Encryption = "EncryptionTableMemory";
         private string Table_Decrypted = "DecryptedTableMemory";
-        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA";
-        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA";
-        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA";
+        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA (пам'ять)";
+        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA (пам'ять)";
+        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA (пам'ять)";
         private string DialogMemory = "Операційна пам'ять (Мб)";
         private string pointonacoordinate = "Точка на координаті операційної пам'яті (Мб)";
 

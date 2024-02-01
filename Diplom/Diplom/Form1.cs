@@ -173,6 +173,8 @@ namespace Diplom
                 Text = "Відкрити графік пам'яті"
             };
 
+            int bitLength = int.Parse(txtGeneratingkeys.Text);
+
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 using (Process process = Process.GetCurrentProcess())
@@ -181,6 +183,11 @@ namespace Diplom
                     lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
                     lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
                     memoryInMegabytesK = process.PrivateMemorySize64 / (1024 * 1024);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Key_" + bitLength + "_біт.txt"))
+                    {
+                        file.WriteLine("{0}", memoryInMegabytesK);
+                    }
                 }
                 lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
 
@@ -199,6 +206,11 @@ namespace Diplom
                     EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime, fileEncryptionTextPath, txtGeneratingkeys.Text);
                     lblEncryptionTextTime.Text = $"Час шифрування: {EncryptionTextTime}";
                     memoryInMegabytesE = process.PrivateMemorySize64 / (1024 * 1024);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Encryption_" + bitLength + "_біт.txt"))
+                    {
+                        file.WriteLine("{0}", memoryInMegabytesK);
+                    }
                 }
                 lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
 
@@ -217,6 +229,11 @@ namespace Diplom
                     DecryptedRSA.OnDecryptedTextClick(sender, e, out DecryptedTextTime, fileDecryptedKeyPath, txtGeneratingkeys.Text);
                     lblDecryptedTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
                     memoryInMegabytesD = process.PrivateMemorySize64 / (1024 * 1024);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Decrypted_" + bitLength + "_біт.txt"))
+                    {
+                        file.WriteLine("{0}", memoryInMegabytesK);
+                    }
                 }
                 lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для для розшифрування тексту";
 
@@ -277,9 +294,9 @@ namespace Diplom
 
         private void oHacToolStrip2_Click(object sender, EventArgs e, Form f)
         {
-            ReadingandWriting.PerformReadingAndWritingGK(sender, e);
-            ReadingandWriting.PerformReadingAndWritingE(sender, e);
-            ReadingandWriting.PerformReadingAndWritingD(sender, e);
+            ReadingandWriting.PerformReadingAndWritingGKTime(sender, e);
+            ReadingandWriting.PerformReadingAndWritingETime(sender, e);
+            ReadingandWriting.PerformReadingAndWritingDTime(sender, e);
             f = new Form2();
             f.Show();
         }
