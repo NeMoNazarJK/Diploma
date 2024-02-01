@@ -27,6 +27,7 @@ namespace Diplom
         private Button OpenFiletClickA;
         private Button OpenFormGT;
         private Button OpenFormM;
+        private Button OpenFormDS;
         private TextBox txtTextSize;
         private TextBox txtGeneratingkeys;
         private Label lblPrivatekeyTime;
@@ -39,6 +40,7 @@ namespace Diplom
 
         Form2 f2;
         Form3 f3;
+        Form4 f4;
 
         private string PrivatekeyTime = "";
         private string PublickeyTime = "";
@@ -173,7 +175,14 @@ namespace Diplom
                 Location = new Point(945, 100),
                 Size = new Size(150, 45),
                 Text = "Відкрити графік пам'яті"
-            };            
+            };
+
+            OpenFormDS = new Button
+            {
+                Location = new Point(460, 220),
+                Size = new Size(150, 45),
+                Text = "Цифровий підпис"
+            };
 
             btnGeneratingkeys.Click += (sender, e) =>
             {
@@ -213,7 +222,7 @@ namespace Diplom
 
                     using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Encryption_" + bitLength + "_біт.txt"))
                     {
-                        file.WriteLine("{0}", memoryInMegabytesK);
+                        file.WriteLine("{0}", memoryInMegabytesE);
                     }
                 }
                 lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
@@ -238,7 +247,7 @@ namespace Diplom
 
                     using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Decrypted_" + bitLength + "_біт.txt"))
                     {
-                        file.WriteLine("{0}", memoryInMegabytesK);
+                        file.WriteLine("{0}", memoryInMegabytesD);
                     }
                 }
                 lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для для розшифрування тексту";
@@ -271,6 +280,15 @@ namespace Diplom
                 oHacToolStrip3_Click(sender, e, f3);
             };
 
+            OpenFormDS.Click += (sender, e) =>
+            {
+                using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Digital_signature.txt"))
+                {
+                    file.WriteLine("{0}", txtTextSize.Text);
+                }
+                oHacToolStrip4_Click(sender, e, f4);
+            };
+
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
             lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
             lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для розшифрування тексту";
@@ -287,6 +305,7 @@ namespace Diplom
             Controls.Add(OpenFiletClickA);
             Controls.Add(OpenFormGT);
             Controls.Add(OpenFormM);
+            Controls.Add(OpenFormDS);
             Controls.Add(txtTextSize);
             Controls.Add(txtGeneratingkeys);
             Controls.Add(lblPrivatekeyTime);
@@ -313,6 +332,12 @@ namespace Diplom
             ReadingandWriting.PerformReadingAndWritingEMemory(sender, e);
             ReadingandWriting.PerformReadingAndWritingDMemory(sender, e);
             f = new Form3();
+            f.Show();
+        }
+
+        private void oHacToolStrip4_Click(object sender, EventArgs e, Form f)
+        {
+            f = new Form4();
             f.Show();
         }
     }
