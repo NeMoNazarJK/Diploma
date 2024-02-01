@@ -81,6 +81,11 @@ internal class GeneratingKeys
             file.WriteLine("{0}, {1}", e, n);
         }
 
+        using (StreamWriter file = new StreamWriter("..\\..\\..\\Key\\Key.pem"))
+        {
+            file.WriteLine("{0}, {1}, {2}", e, d, n);
+        }
+
         using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Key_" + bitLength + "_á³ò.txt"))
         {             
             file.WriteLine("{0}", combinedTimeZ.TotalSeconds);
