@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using ClosedXML.Excel;
+using Diplom.RSA;
+using System.IO;
 
 namespace Diplom
 {
@@ -38,12 +40,16 @@ namespace Diplom
         private string Time_Generating_Key = "..\\..\\..\\Time\\Time_Key.txt";
         private string Time_Encryption = "..\\..\\..\\Time\\Time_Encryption.txt";
         private string Time_Decrypted = "..\\..\\..\\Time\\Time_Decrypted.txt";
-        private string Table_Generating_Key = "GeneratingKeyTable";
-        private string Table_Encryption = "EncryptionTable";
-        private string Table_Decrypted = "DecryptedTable";
+        private string Table_Generating_Key = "GeneratingKeyTableTime";
+        private string Table_Encryption = "EncryptionTableTime";
+        private string Table_Decrypted = "DecryptedTableTime";
         private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA";
         private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA";
         private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA";
+        private string DialogTime = "Час (с)";
+        private string pointonacoordinate = "Точка на координаті часу (с)";
+
+        private Color seriesColor = Color.Green;
 
         private void InitializeFormElements()
         {
@@ -154,47 +160,47 @@ namespace Diplom
 
             BuildingGeneratingKey.Click += (sender, e) =>
             {
-                BuildingButton_Click(sender, e, N, ChartGeneratingKey, Time_Generating_Key, saveDialogFileName, dataGridViewGK);
+                Building.BuildingButton_Click(sender, e, N, ChartGeneratingKey, Time_Generating_Key, saveDialogFileName, dataGridViewGK, DialogTime, seriesColor, pointonacoordinate);
             };
 
             BuildingEncryption.Click += (sender, e) =>
             {
-                BuildingButton_Click(sender, e, N, ChartEncryption, Time_Encryption, saveDialogFileNameEncryption, dataGridViewEncryption);
+                Building.BuildingButton_Click(sender, e, N, ChartEncryption, Time_Encryption, saveDialogFileNameEncryption, dataGridViewEncryption, DialogTime, seriesColor, pointonacoordinate);
             };
 
             BuildingDecrypted.Click += (sender, e) =>
             {
-                BuildingButton_Click(sender, e, N, ChartDecrypted, Time_Decrypted, saveDialogFileNameDecrypted, dataGridViewDecrypted);
+                Building.BuildingButton_Click(sender, e, N, ChartDecrypted, Time_Decrypted, saveDialogFileNameDecrypted, dataGridViewDecrypted, DialogTime, seriesColor, pointonacoordinate);
             };
 
             SaveGeneratingKey.Click += (sender, e) =>
             {
-                SaveButton_Click(sender, e, saveDialogFileName, ChartGeneratingKey);
+                saveInstance.SaveButton_Click(sender, e, saveDialogFileName, ChartGeneratingKey);
             };
 
             SaveEncryption.Click += (sender, e) =>
             {
-                SaveButton_Click(sender, e, saveDialogFileNameEncryption, ChartEncryption);
+                saveInstance.SaveButton_Click(sender, e, saveDialogFileNameEncryption, ChartEncryption);
             };
 
             SaveDecrypted.Click += (sender, e) =>
             {
-                SaveButton_Click(sender, e, saveDialogFileNameDecrypted, ChartDecrypted);
+                saveInstance.SaveButton_Click(sender, e, saveDialogFileNameDecrypted, ChartDecrypted);
             };
 
             SaveGeneratingKeyT.Click += (sender, e) =>
             {
-                SaveTable_Click(sender, e, dataGridViewGK, Table_Generating_Key);
+                saveInstance.SaveDataGridViewToExcel(sender, e, dataGridViewGK, Table_Generating_Key);
             };
 
             SaveEncryptionT.Click += (sender, e) =>
             {
-                SaveTable_Click(sender, e, dataGridViewEncryption, Table_Encryption);
+                saveInstance.SaveDataGridViewToExcel(sender, e, dataGridViewEncryption, Table_Encryption);
             };
 
             SaveDecryptedT.Click += (sender, e) =>
             {
-                SaveTable_Click(sender, e, dataGridViewDecrypted, Table_Decrypted);
+                saveInstance.SaveDataGridViewToExcel(sender, e, dataGridViewDecrypted, Table_Decrypted);
             };
 
             Controls.Add(ChartGeneratingKey);
@@ -212,123 +218,6 @@ namespace Diplom
             Controls.Add(dataGridViewGK);
             Controls.Add(dataGridViewEncryption);
             Controls.Add(dataGridViewDecrypted);
-        }
-
-        private void BuildingButton_Click(object sender, EventArgs e, int[] N, Chart ChartGenerating, string file, string saveDialogFileName, DataGridView dataGridView1)
-        {            
-            string filePath = file;
-            string content = File.ReadAllText(filePath);
-            string[] valuesAsString = content.Split('+');
-
-            List<double> MList = new List<double>();
-
-            foreach (string valueStr in valuesAsString)
-            {
-                if (!string.IsNullOrEmpty(valueStr))
-                {
-                    double value;
-                    if (double.TryParse(valueStr, out value))
-                    {
-                        MList.Add(value);
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Неможливо конвертувати рядок '{valueStr}' в число.");
-                        return;
-                    }
-                }
-            }
-
-            double[] M = MList.ToArray();
-
-            int[] K = new int[] { 1, 2, 3, 4, 5, 6 };
-
-            dataGridView1.ColumnCount = 3;
-            dataGridView1.Columns[0].Name = "Номер";
-            dataGridView1.Columns[1].Name = "Точка на координаті розміру ключа N (біт)";
-            dataGridView1.Columns[2].Name = "Точка на координаті часу (с)";
-
-            ChartArea chartArea = new ChartArea();
-            ChartGenerating.ChartAreas.Add(chartArea);
-
-            Series series = new Series();
-            ChartGenerating.Series.Add(series);
-
-            series.ChartType = SeriesChartType.Line;
-
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-            for (int i = 0; i < Math.Min(N.Length, M.Length); i++)
-            {
-                series.Points.AddXY(N[i], M[i]);
-
-                string[] row = new string[] { K[i].ToString(), N[i].ToString(), M[i].ToString() };
-                dataGridView1.Rows.Add(row);
-            }
-
-            series.BorderWidth = 3;
-
-            series.Name = saveDialogFileName;
-            series.LegendText = series.Name;
-            series.Color = Color.Red;
-
-            chartArea.AxisX.Title = "Розмір ключа N (біт)";
-            chartArea.AxisX.TitleFont = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
-
-            chartArea.AxisY.Title = "Час (с)";
-            chartArea.AxisY.TitleFont = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
-
-            Title seriesTitle = new Title();
-            seriesTitle.Name = "SeriesTitle";
-            seriesTitle.Text = series.Name;
-            seriesTitle.Docking = Docking.Top;
-            ChartGenerating.Titles.Add(seriesTitle);
-
-            Legend legend = new Legend();
-            legend.Docking = Docking.Right;
-            ChartGenerating.Legends.Add(legend);
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e, string saveDialogFileName, Chart chart1)
-        {
-            string savePath = Path.Combine("..\\..\\..\\Schedule\\", saveDialogFileName + ".png");
-
-            chart1.SaveImage(savePath, ChartImageFormat.Png);
-            MessageBox.Show("Зображення збережено.");
-        }
-
-        private void SaveTable_Click(object sender, EventArgs e, DataGridView dataGridViewT, string TableFile)
-        {
-            SaveDataGridViewToExcel(dataGridViewT, TableFile);
-        }
-
-        private void SaveDataGridViewToExcel(DataGridView dataGridView, string fileName)
-        {
-            using (var workbook = new XLWorkbook())
-            {
-                var worksheet = workbook.Worksheets.Add(fileName);
-
-                for (int i = 1; i <= dataGridView.Columns.Count; i++)
-                {
-                    worksheet.Cell(1, i).Value = dataGridView.Columns[i - 1].HeaderText;
-                }
-
-                for (int i = 0; i < dataGridView.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dataGridView.Columns.Count; j++)
-                    {
-                        object cellValue = dataGridView.Rows[i].Cells[j].Value;
-                        string stringValue = cellValue != null ? cellValue.ToString() : "";
-
-                        worksheet.Cell(i + 2, j + 1).Value = stringValue;
-                    }
-                }
-
-                string excelPath = Path.Combine("..\\..\\..\\Table\\", fileName + ".xlsx");
-                workbook.SaveAs(excelPath);
-
-                MessageBox.Show("Таблицю збережено.");
-            }
-        }
+        }  
     }
 }
