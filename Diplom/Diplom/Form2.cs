@@ -19,6 +19,8 @@ namespace Diplom
         public Form2()
         {
             InitializeFormElements();
+
+            Icon = new Icon("..\\..\\..\\Icon\\Schedule.ico");
         }
 
         private Chart ChartGeneratingKey;
@@ -43,9 +45,9 @@ namespace Diplom
         private string Table_Generating_Key = "GeneratingKeyTableTime";
         private string Table_Encryption = "EncryptionTableTime";
         private string Table_Decrypted = "DecryptedTableTime";
-        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA";
-        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA";
-        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA";
+        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA (час)";
+        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA (час)";
+        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA (час)";
         private string DialogTime = "Час (с)";
         private string pointonacoordinate = "Точка на координаті часу (с)";
 
@@ -55,7 +57,7 @@ namespace Diplom
         {
             this.Size = new Size(1920, 1080);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "RSA_Graphs";
+            this.Text = "RSA Graphs Time";
 
             ChartGeneratingKey = new Chart()
             {

@@ -15,7 +15,9 @@ namespace Diplom
     {
         public Form3()
         {
-            InitializeComponent();
+            InitializeFormElements();
+
+            Icon = new Icon("..\\..\\..\\Icon\\Schedule.ico");
         }
 
         private Chart ChartGeneratingKey;
@@ -40,9 +42,9 @@ namespace Diplom
         private string Table_Generating_Key = "GeneratingKeyTableMemory";
         private string Table_Encryption = "EncryptionTableMemory";
         private string Table_Decrypted = "DecryptedTableMemory";
-        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA";
-        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA";
-        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA";
+        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA (пам'ять)";
+        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA (пам'ять)";
+        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA (пам'ять)";
         private string DialogMemory = "Операційна пам'ять (Мб)";
         private string pointonacoordinate = "Точка на координаті операційної пам'яті (Мб)";
 
@@ -52,7 +54,7 @@ namespace Diplom
         {
             this.Size = new Size(1920, 1080);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "RSA_Graphs";
+            this.Text = "RSA Graphs Memory";
 
             ChartGeneratingKey = new Chart()
             {

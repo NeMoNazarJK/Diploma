@@ -15,6 +15,8 @@ namespace Diplom
         public Form1()
         {
             InitializeFormElements();
+
+            Icon = new Icon("..\\..\\..\\Icon\\Encryption.ico");
         }
 
         private Button btnGeneratingkeys;
@@ -171,16 +173,23 @@ namespace Diplom
                 Location = new Point(945, 100),
                 Size = new Size(150, 45),
                 Text = "Відкрити графік пам'яті"
-            };
+            };            
 
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 using (Process process = Process.GetCurrentProcess())
                 {
+                    int bitLength = int.Parse(txtGeneratingkeys.Text);
+
                     GeneratingKeys.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
                     lblPrivatekeyTime.Text = $"Час генерування приватного ключа: {PrivatekeyTime}";
                     lblPublickeyTime.Text = $"Час генерування публічного ключа: {PublickeyTime}";
                     memoryInMegabytesK = process.PrivateMemorySize64 / (1024 * 1024);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Key_" + bitLength + "_біт.txt"))
+                    {
+                        file.WriteLine("{0}", memoryInMegabytesK);
+                    }
                 }
                 lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
 
@@ -191,6 +200,8 @@ namespace Diplom
             {
                 using (Process process = Process.GetCurrentProcess())
                 {
+                    int bitLength = int.Parse(txtGeneratingkeys.Text);
+
                     OpenFileDialog openFileDialog = new OpenFileDialog();
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -199,6 +210,11 @@ namespace Diplom
                     EncryptionRSA.OnEncryptionTextClick(sender, e, txtTextSize.Text, out EncryptionTextTime, fileEncryptionTextPath, txtGeneratingkeys.Text);
                     lblEncryptionTextTime.Text = $"Час шифрування: {EncryptionTextTime}";
                     memoryInMegabytesE = process.PrivateMemorySize64 / (1024 * 1024);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Encryption_" + bitLength + "_біт.txt"))
+                    {
+                        file.WriteLine("{0}", memoryInMegabytesK);
+                    }
                 }
                 lblmemoryInMegabytesEncryption.Text = $"Використана оперативна пам'ять: {memoryInMegabytesE} МБ для шифрування тексту";
 
@@ -209,6 +225,8 @@ namespace Diplom
             {
                 using (Process process = Process.GetCurrentProcess())
                 {
+                    int bitLength = int.Parse(txtGeneratingkeys.Text);
+
                     OpenFileDialog openFileDialog = new OpenFileDialog();
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -217,6 +235,11 @@ namespace Diplom
                     DecryptedRSA.OnDecryptedTextClick(sender, e, out DecryptedTextTime, fileDecryptedKeyPath, txtGeneratingkeys.Text);
                     lblDecryptedTextTime.Text = $"Час розшифрування: {DecryptedTextTime}";
                     memoryInMegabytesD = process.PrivateMemorySize64 / (1024 * 1024);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Decrypted_" + bitLength + "_біт.txt"))
+                    {
+                        file.WriteLine("{0}", memoryInMegabytesK);
+                    }
                 }
                 lblmemoryInMegabytesDecrypted.Text = $"Використана оперативна пам'ять: {memoryInMegabytesD} МБ для для розшифрування тексту";
 
@@ -277,15 +300,18 @@ namespace Diplom
 
         private void oHacToolStrip2_Click(object sender, EventArgs e, Form f)
         {
-            ReadingandWriting.PerformReadingAndWritingGK(sender, e);
-            ReadingandWriting.PerformReadingAndWritingE(sender, e);
-            ReadingandWriting.PerformReadingAndWritingD(sender, e);
+            ReadingandWriting.PerformReadingAndWritingGKTime(sender, e);
+            ReadingandWriting.PerformReadingAndWritingETime(sender, e);
+            ReadingandWriting.PerformReadingAndWritingDTime(sender, e);
             f = new Form2();
             f.Show();
         }
 
         private void oHacToolStrip3_Click(object sender, EventArgs e, Form f)
         {
+            ReadingandWriting.PerformReadingAndWritingGKMemory(sender, e);
+            ReadingandWriting.PerformReadingAndWritingEMemory(sender, e);
+            ReadingandWriting.PerformReadingAndWritingDMemory(sender, e);
             f = new Form3();
             f.Show();
         }
