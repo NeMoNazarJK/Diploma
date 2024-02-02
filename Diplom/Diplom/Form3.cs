@@ -55,6 +55,7 @@ namespace Diplom
             this.Size = new Size(1920, 1080);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "RSA Graphs Memory";
+            this.WindowState = FormWindowState.Maximized;
 
             ChartGeneratingKey = new Chart()
             {

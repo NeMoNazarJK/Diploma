@@ -14,8 +14,15 @@ namespace Diplom
     {
         public Form4()
         {
-            InitializeComponent();
+            InitializeFormElements();
         }
 
+        private void InitializeFormElements()
+        {
+            this.Size = new Size(1920, 1080);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "RSA Digital Signature";
+            this.WindowState = FormWindowState.Maximized;
+        }
     }
 }

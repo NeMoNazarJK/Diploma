@@ -57,6 +57,7 @@ namespace Diplom
             this.Size = new Size(1920, 1080);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "RSA";
+            this.WindowState = FormWindowState.Maximized;
 
             txtTextSize = new TextBox
             {
