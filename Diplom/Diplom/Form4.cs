@@ -24,6 +24,7 @@ namespace Diplom
         private TextBox txtTextSize;
         private TextBox txtGeneratingkeys;
         private Button btnGeneratingkeys;
+        private Button btnSignature;
         private Label lblKeyTime;
         private Label lblmemoryInMegabytesKey;
 
@@ -53,9 +54,16 @@ namespace Diplom
 
             btnGeneratingkeys = new Button
             {
-                Location = new Point(460, 40),
+                Location = new Point(10, 40),
                 Size = new Size(150, 45),
                 Text = "Згенерувати пару ключів"
+            };
+
+            btnSignature = new Button
+            {
+                Location = new Point(160, 40),
+                Size = new Size(150, 45),
+                Text = "Підписати повідомлення"
             };
 
             lblKeyTime = new Label
@@ -98,6 +106,7 @@ namespace Diplom
             Controls.Add(txtTextSize);
             Controls.Add(txtGeneratingkeys);
             Controls.Add(btnGeneratingkeys);
+            Controls.Add(btnSignature);
             Controls.Add(lblKeyTime);
             Controls.Add(lblmemoryInMegabytesKey);
         }
