@@ -27,9 +27,14 @@ namespace Diplom
         private Button btnSignature;
         private Label lblKeyTime;
         private Label lblmemoryInMegabytesKey;
+        private Label lblSignatureTime;
+        private Label lblmemoryInSignature;
 
         private double memoryInMegabytesK = 0.0;
+        private double memoryInSignature = 0.0;
         private string KeyTime = "";
+        private string SignatureTime = "";
+        private string fileKey = "";
 
         private void InitializeFormElements()
         {
@@ -80,6 +85,20 @@ namespace Diplom
                 Text = ""
             };
 
+            lblSignatureTime = new Label
+            {
+                Location = new Point(630, 30),
+                AutoSize = true,
+                Text = ""
+            };
+
+            lblmemoryInSignature = new Label
+            {
+                Location = new Point(945, 30),
+                AutoSize = true,
+                Text = ""
+            };
+
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 using (Process process = Process.GetCurrentProcess())
@@ -87,10 +106,10 @@ namespace Diplom
                     int bitLength = int.Parse(txtGeneratingkeys.Text);
 
                     GeneratingKeysDigitalSignature.OnGeneratingKeysDigitalSignatureClick(sender, e, txtGeneratingkeys.Text, out KeyTime);
-                    lblKeyTime.Text = $"Час генерування приватного ключа: {KeyTime}";
+                    lblKeyTime.Text = $"Час генерування ключа: {KeyTime}";
                     memoryInMegabytesK = process.PrivateMemorySize64 / (1024 * 1024);
 
-                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Memory_Key_" + bitLength + "_Digital_Signature_біт.txt"))
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Digital Signature\\Memory_" + bitLength + "_Digital_Signature_біт.txt"))
                     {
                         file.WriteLine("{0}", memoryInMegabytesK);
                     }
@@ -100,15 +119,39 @@ namespace Diplom
                 MessageBox.Show("Ключі успішно згенеровані.");
             };
 
+            btnSignature.Click += (sender, e) =>
+            {
+                using (Process process = Process.GetCurrentProcess())
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        fileKey = openFileDialog.FileName;
+                    }
+
+                    Signature.OnSignatureClick(sender, e, txtGeneratingkeys.Text, out SignatureTime, txtGeneratingkeys.Text, fileKey);
+                    lblSignatureTime.Text = $"Час підписання повідомлення: {SignatureTime}";
+                    memoryInSignature = process.PrivateMemorySize64 / (1024 * 1024);
+
+                }
+                lblmemoryInSignature.Text = $"Використана оперативна пам'ять: {memoryInSignature} МБ для генерування ключів";
+
+                MessageBox.Show("Підписання повідомлення завершено.");
+            };
+
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
-            lblKeyTime.Text = $"Час генерування приватного ключа: {KeyTime}";
+            lblKeyTime.Text = $"Час генерування ключа: {KeyTime}";
+            lblmemoryInSignature.Text = $"Використана оперативна пам'ять: {memoryInSignature} МБ для підписання повідомлення";
+            lblSignatureTime.Text = $"Час підписання повідомлення: {SignatureTime}";
 
             Controls.Add(txtTextSize);
             Controls.Add(txtGeneratingkeys);
             Controls.Add(btnGeneratingkeys);
             Controls.Add(btnSignature);
             Controls.Add(lblKeyTime);
+            Controls.Add(lblSignatureTime);
             Controls.Add(lblmemoryInMegabytesKey);
+            Controls.Add(lblmemoryInSignature);
         }
     }
 }

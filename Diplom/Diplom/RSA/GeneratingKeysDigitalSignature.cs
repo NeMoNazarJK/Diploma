@@ -77,7 +77,7 @@ namespace Diplom.RSA
                 file.WriteLine("{0}, {1}, {2}", e, d, n);
             }
 
-            using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Time_Key_" + bitLength + "_Digital_Signature_біт.txt"))
+            using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Digital Signature\\Time_Key_" + bitLength + "_Digital_Signature_біт.txt"))
             {
                 file.WriteLine("{0}", combinedTimeZ.TotalSeconds);
             }

@@ -1,1 +1,0 @@
-Помилка при зчитуванні файлу: The value cannot be an empty string. (Parameter 'path')
