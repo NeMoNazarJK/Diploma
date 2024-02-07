@@ -8,15 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using ClosedXML.Excel;
-using Diplom.RSA;
-using System.IO;
 
 namespace Diplom
 {
-    public partial class Form2 : Form
+    public partial class Form5 : Form
     {
-        public Form2()
+        public Form5()
         {
             InitializeFormElements();
 
@@ -39,25 +36,25 @@ namespace Diplom
         private Button BuildingEncryption;
         private Button BuildingDecrypted;
 
-        private string Time_Generating_Key = "..\\..\\..\\Time\\Time_Key.txt";
-        private string Time_Encryption = "..\\..\\..\\Time\\Time_Encryption.txt";
-        private string Time_Decrypted = "..\\..\\..\\Time\\Time_Decrypted.txt";
-        private string Table_Generating_Key = "GeneratingKeyTableTime";
-        private string Table_Encryption = "EncryptionTableTime";
-        private string Table_Decrypted = "DecryptedTableTime";
-        private string saveDialogFileName = "Графік Генерація N-бітного ключа для RSA (час)";
-        private string saveDialogFileNameEncryption = "Графік Шифрування N-бітного ключа для RSA (час)";
-        private string saveDialogFileNameDecrypted = "Графік Розшифрування N-бітного ключа для RSA (час)";
+        private string Time_Generating_Key = "..\\..\\..\\Time\\Digital Signature\\Time_Key_Digital_Signature.txt";
+        private string Time_Encryption = "..\\..\\..\\Time\\Digital Signature\\Time_Signature.txt";
+        private string Time_Decrypted = "..\\..\\..\\Time\\Digital Signature\\Time_Checklist.txt";
+        private string Table_Generating_Key = "DigitalSignatureTableTime";
+        private string Table_Encryption = "SignatureTableTime";
+        private string Table_Decrypted = "ChecklistTableTime";
+        private string saveDialogFileName = "Графік Генерація N-бітного ключа для електроного цифрового підпису RSA (час)";
+        private string saveDialogFileNameEncryption = "Графік N-бітного ключа для підписання електроного цифрового підпису RSA (час)";
+        private string saveDialogFileNameDecrypted = "Графік N-бітного ключа для перевірки електроного цифрового підпису RSA (час)";
         private string DialogTime = "Час (с)";
         private string pointonacoordinate = "Точка на координаті часу (с)";
 
-        private Color seriesColor = Color.Green;
+        private Color seriesColor = Color.Yellow;
 
         private void InitializeFormElements()
         {
             this.Size = new Size(1920, 1080);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "RSA Graphs Time";
+            this.Text = "RSA Digital Signature Graphs Time";
             this.WindowState = FormWindowState.Maximized;
 
             ChartGeneratingKey = new Chart()
@@ -82,63 +79,63 @@ namespace Diplom
             {
                 Location = new Point(1000, 10),
                 Size = new Size(250, 45),
-                Text = "Побудувати графік Генерація N-бітного ключа для RSA",
+                Text = "Побудувати графік Генерація N-бітного ключа для електроного цифрового підпису RSA",
             };
 
             BuildingEncryption = new Button()
             {
                 Location = new Point(1000, 350),
                 Size = new Size(250, 45),
-                Text = "Побудувати графік Шифрування N-бітного ключа для RSA",
+                Text = "Побудувати графік N-бітного ключа для підписання електроного цифрового підпису RSA",
             };
 
             BuildingDecrypted = new Button()
             {
                 Location = new Point(1000, 690),
                 Size = new Size(250, 45),
-                Text = "Побудувати графік Розшифрування N-бітного ключа для RSA",
+                Text = "Побудувати графік N-бітного ключа для перевірки електроного цифрового підпису RSA",
             };
 
             SaveGeneratingKey = new Button()
             {
                 Location = new Point(1000, 70),
                 Size = new Size(250, 45),
-                Text = "Зберегти графік Генерація N-бітного ключа для RSA",
+                Text = "Зберегти графік Генерація N-бітного ключа для електроного цифрового підпису RSA",
             };
 
             SaveGeneratingKeyT = new Button()
             {
                 Location = new Point(1000, 130),
                 Size = new Size(250, 45),
-                Text = "Зберегти таблицю Генерація N-бітного ключа для RSA",
+                Text = "Зберегти таблицю Генерація N-бітного ключа для електроного цифрового підпису RSA",
             };
 
             SaveEncryption = new Button()
             {
                 Location = new Point(1000, 410),
                 Size = new Size(250, 45),
-                Text = "Зберегти графік Шифрування N-бітного ключа для RSA",
+                Text = "Зберегти графік N-бітного ключа для підписання електроного цифрового підпису RSA",
             };
 
             SaveEncryptionT = new Button()
             {
                 Location = new Point(1000, 470),
                 Size = new Size(250, 45),
-                Text = "Зберегти таблицю Шифрування N-бітного ключа для RSA",
+                Text = "Зберегти таблицю N-бітного ключа для підписання електроного цифрового підпису RSA",
             };
 
             SaveDecrypted = new Button()
             {
                 Location = new Point(1000, 750),
                 Size = new Size(250, 45),
-                Text = "Зберегти графік Розшифрування N-бітного ключа для RSA",
+                Text = "Зберегти графік для перевірки електроного цифрового підпису RSA",
             };
 
             SaveDecryptedT = new Button()
             {
                 Location = new Point(1000, 810),
                 Size = new Size(250, 45),
-                Text = "Зберегти таблицю Розшифрування N-бітного ключа для RSA",
+                Text = "Зберегти таблицю для перевірки електроного цифрового підпису RSA",
             };
 
             dataGridViewGK = new DataGridView()
@@ -221,6 +218,6 @@ namespace Diplom
             Controls.Add(dataGridViewGK);
             Controls.Add(dataGridViewEncryption);
             Controls.Add(dataGridViewDecrypted);
-        }  
+        }
     }
 }

@@ -135,7 +135,7 @@ namespace Diplom
             {
                 Location = new Point(1000, 810),
                 Size = new Size(250, 45),
-                Text = "Зберегти графік Розшифрування N-бітного ключа для RSA",
+                Text = "Зберегти таблицю Розшифрування N-бітного ключа для RSA",
             };
 
             dataGridViewGK = new DataGridView()

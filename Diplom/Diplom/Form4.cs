@@ -26,6 +26,8 @@ namespace Diplom
         private Button btnGeneratingkeys;
         private Button btnSignature;
         private Button btnChecklist;
+        private Button OpenFormGT;
+        private Button OpenFormM;
         private Label lblKeyTime;
         private Label lblSignatureTime;
         private Label lblChecklistTime;
@@ -33,6 +35,8 @@ namespace Diplom
         private Label lblmemoryInSignature;
         private Label lblmemoryInChecklist;
 
+        Form5 f5;
+        Form6 f6;
 
         private double memoryInMegabytesK = 0.0;
         private double memoryInSignature = 0.0;
@@ -127,6 +131,20 @@ namespace Diplom
                 Text = ""
             };
 
+            OpenFormGT = new Button
+            {
+                Location = new Point(630, 60),
+                Size = new Size(150, 45),
+                Text = "Відкрити графік часу"
+            };
+
+            OpenFormM = new Button
+            {
+                Location = new Point(1050, 60),
+                Size = new Size(150, 45),
+                Text = "Відкрити графік пам'яті"
+            };
+
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 using (Process process = Process.GetCurrentProcess())
@@ -192,6 +210,16 @@ namespace Diplom
                 lblmemoryInChecklist.Text = $"Використана оперативна пам'ять: {memoryInChecklist} МБ для перевірки електроного цифрового підпису";
             };
 
+            OpenFormGT.Click += (sender, e) =>
+            {
+                oHacToolStrip2_Click(sender, e, f5);
+            };
+
+            OpenFormM.Click += (sender, e) =>
+            {
+                oHacToolStrip3_Click(sender, e, f6);
+            };
+
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
             lblKeyTime.Text = $"Час генерування ключа: {KeyTime}";
             lblmemoryInSignature.Text = $"Використана оперативна пам'ять: {memoryInSignature} МБ для підписання повідомлення";
@@ -204,12 +232,32 @@ namespace Diplom
             Controls.Add(btnGeneratingkeys);
             Controls.Add(btnSignature);
             Controls.Add(btnChecklist);
+            Controls.Add(OpenFormGT);
+            Controls.Add(OpenFormM);
             Controls.Add(lblKeyTime);
             Controls.Add(lblSignatureTime);
             Controls.Add(lblChecklistTime);
             Controls.Add(lblmemoryInMegabytesKey);
             Controls.Add(lblmemoryInSignature);
             Controls.Add(lblmemoryInChecklist);
+        }
+
+        private void oHacToolStrip2_Click(object sender, EventArgs e, Form f)
+        {
+            ReadingandWriting.PerformReadingAndWritingGKDigitalSignatureTime(sender, e);
+            ReadingandWriting.PerformReadingAndWritingEDigitalSignatureTime(sender, e);
+            ReadingandWriting.PerformReadingAndWritingDDigitalSignatureTime(sender, e);
+            f = new Form5();
+            f.Show();
+        }
+
+        private void oHacToolStrip3_Click(object sender, EventArgs e, Form f)
+        {
+            ReadingandWriting.PerformReadingAndWritingGKDigitalSignatureMemory(sender, e);
+            ReadingandWriting.PerformReadingAndWritingEDigitalSignatureMemory(sender, e);
+            ReadingandWriting.PerformReadingAndWritingDDigitalSignatureMemory(sender, e);
+            f = new Form6();
+            f.Show();
         }
     }
 }
