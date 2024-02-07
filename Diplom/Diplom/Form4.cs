@@ -25,16 +25,23 @@ namespace Diplom
         private TextBox txtGeneratingkeys;
         private Button btnGeneratingkeys;
         private Button btnSignature;
+        private Button btnChecklist;
         private Label lblKeyTime;
-        private Label lblmemoryInMegabytesKey;
         private Label lblSignatureTime;
+        private Label lblChecklistTime;
+        private Label lblmemoryInMegabytesKey;
         private Label lblmemoryInSignature;
+        private Label lblmemoryInChecklist;
+
 
         private double memoryInMegabytesK = 0.0;
         private double memoryInSignature = 0.0;
+        private double memoryInChecklist = 0.0;
         private string KeyTime = "";
         private string SignatureTime = "";
+        private string ChecklistTime = "";
         private string fileKey = "";
+        private string Checklists = "..\\..\\..\\Files\\Еlectronic_digital_signature_m.txt";
 
         private void InitializeFormElements()
         {
@@ -71,6 +78,13 @@ namespace Diplom
                 Text = "Підписати повідомлення"
             };
 
+            btnChecklist = new Button
+            {
+                Location = new Point(310, 40),
+                Size = new Size(150, 45),
+                Text = "Перевірити електроний цифровий підпис"
+            };
+
             lblKeyTime = new Label
             {
                 Location = new Point(630, 15),
@@ -80,7 +94,7 @@ namespace Diplom
 
             lblmemoryInMegabytesKey = new Label
             {
-                Location = new Point(945, 15),
+                Location = new Point(1050, 15),
                 AutoSize = true,
                 Text = ""
             };
@@ -94,7 +108,21 @@ namespace Diplom
 
             lblmemoryInSignature = new Label
             {
-                Location = new Point(945, 30),
+                Location = new Point(1050, 30),
+                AutoSize = true,
+                Text = ""
+            };
+
+            lblChecklistTime = new Label
+            {
+                Location = new Point(630, 45),
+                AutoSize = true,
+                Text = ""
+            };
+
+            lblmemoryInChecklist = new Label
+            {
+                Location = new Point(1050, 45),
                 AutoSize = true,
                 Text = ""
             };
@@ -123,35 +151,65 @@ namespace Diplom
             {
                 using (Process process = Process.GetCurrentProcess())
                 {
+                    int bitLength = int.Parse(txtGeneratingkeys.Text);
+
                     OpenFileDialog openFileDialog = new OpenFileDialog();
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         fileKey = openFileDialog.FileName;
                     }
 
-                    Signature.OnSignatureClick(sender, e, txtGeneratingkeys.Text, out SignatureTime, txtGeneratingkeys.Text, fileKey);
+                    Signature.OnSignatureClick(sender, e, txtTextSize.Text, out SignatureTime, fileKey, txtGeneratingkeys.Text);
                     lblSignatureTime.Text = $"Час підписання повідомлення: {SignatureTime}";
                     memoryInSignature = process.PrivateMemorySize64 / (1024 * 1024);
 
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Digital Signature\\Memory_" + bitLength + "_Signature_біт.txt"))
+                    {
+                        file.WriteLine("{0}", memoryInSignature);
+                    }
+
                 }
-                lblmemoryInSignature.Text = $"Використана оперативна пам'ять: {memoryInSignature} МБ для генерування ключів";
+                lblmemoryInSignature.Text = $"Використана оперативна пам'ять: {memoryInSignature} МБ для підписання повідомлення";
 
                 MessageBox.Show("Підписання повідомлення завершено.");
+            };
+
+            btnChecklist.Click += (sender, e) =>
+            {
+                using (Process process = Process.GetCurrentProcess())
+                {
+                    int bitLength = int.Parse(txtGeneratingkeys.Text);
+
+                    Checklist.OnChecklistClick(sender, e, txtTextSize.Text, out ChecklistTime, Checklists, txtGeneratingkeys.Text);
+                    lblChecklistTime.Text = $"Час перевірки електроного цифрового підпису: {ChecklistTime}";
+                    memoryInChecklist = process.PrivateMemorySize64 / (1024 * 1024);
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Memory\\Digital Signature\\Memory_" + bitLength + "_Checklist_біт.txt"))
+                    {
+                        file.WriteLine("{0}", memoryInChecklist);
+                    }
+                }
+                lblmemoryInChecklist.Text = $"Використана оперативна пам'ять: {memoryInChecklist} МБ для перевірки електроного цифрового підпису";
             };
 
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
             lblKeyTime.Text = $"Час генерування ключа: {KeyTime}";
             lblmemoryInSignature.Text = $"Використана оперативна пам'ять: {memoryInSignature} МБ для підписання повідомлення";
             lblSignatureTime.Text = $"Час підписання повідомлення: {SignatureTime}";
+            lblmemoryInChecklist.Text = $"Використана оперативна пам'ять: {memoryInChecklist} МБ для перевірки електроного цифрового підпису";
+            lblChecklistTime.Text = $"Час перевірки електроного цифрового підпису: {ChecklistTime}";
 
             Controls.Add(txtTextSize);
             Controls.Add(txtGeneratingkeys);
             Controls.Add(btnGeneratingkeys);
             Controls.Add(btnSignature);
+            Controls.Add(btnChecklist);
             Controls.Add(lblKeyTime);
             Controls.Add(lblSignatureTime);
+            Controls.Add(lblChecklistTime);
             Controls.Add(lblmemoryInMegabytesKey);
             Controls.Add(lblmemoryInSignature);
+            Controls.Add(lblmemoryInChecklist);
         }
     }
 }

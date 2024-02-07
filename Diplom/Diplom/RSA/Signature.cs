@@ -12,11 +12,11 @@ namespace Diplom.RSA
 {
     internal class Signature
     {
-        public static string OnSignatureClick(object sender, EventArgs a, string txtGeneratingkeysValue, out string KeyTime, string bitLengthTXT, string txtkeysValue)
+        public static string OnSignatureClick(object sender, EventArgs a, string txtSignatureValue, out string SignatureTime, string txtkeysValue, string Signature)
         {
-            KeyTime = "";
-            int bitLength = int.Parse(bitLengthTXT);
+            SignatureTime = "";
             string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
+            int bitLength = int.Parse(Signature);
             try
             {
                 string fileContent = File.ReadAllText(txtkeysValue);
@@ -32,9 +32,9 @@ namespace Diplom.RSA
                     BigInteger n = BigInteger.Parse(parts[2]);
 
                     Stopwatch stopwatch = Stopwatch.StartNew();
+                    stopwatch.Start();
 
-                    stopwatch.Stop();
-                    string hashedMessage = HashMessage.Hash(txtGeneratingkeysValue, alphabet);
+                    string hashedMessage = HashMessage.Hash(txtSignatureValue, alphabet);
                     BigInteger hashedMessageBigInt = new BigInteger(Encoding.UTF8.GetBytes(hashedMessage));
                     using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Hash.txt"))
                     {
@@ -54,8 +54,14 @@ namespace Diplom.RSA
                     {
                         file.WriteLine("{0}", m);
                     }
+                    stopwatch.Stop();
                     TimeSpan keyTime = stopwatch.Elapsed;
-                    KeyTime = keyTime.ToString();
+                    SignatureTime = keyTime.ToString();
+
+                    using (StreamWriter file = new StreamWriter("..\\..\\..\\Time\\Digital Signature\\Time_"+ bitLength + "_Signature_біт.txt"))
+                    {
+                        file.WriteLine("{0}", keyTime.TotalSeconds);
+                    }
                 }
                 else
                 {
@@ -79,7 +85,7 @@ namespace Diplom.RSA
                     file.WriteLine($"Помилка при зчитуванні файлу: {ex.Message}");
                 }
             }
-            return (KeyTime);
+            return (SignatureTime);
         }
     }
 }

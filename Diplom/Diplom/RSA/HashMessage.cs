@@ -18,7 +18,6 @@ namespace Diplom.RSA
                 byte[] messageBytes = Encoding.UTF8.GetBytes(message);
                 byte[] alphabetBytes = Encoding.UTF8.GetBytes(alphabet);
 
-                // Використання алфавіту для конвертації байтів повідомлення
                 for (int i = 0; i < messageBytes.Length; i++)
                 {
                     int index = Array.IndexOf(alphabetBytes, messageBytes[i]);
@@ -28,10 +27,8 @@ namespace Diplom.RSA
                     }
                 }
 
-                // Хешування за допомогою SHA-256
                 byte[] hashBytes = sha256.ComputeHash(messageBytes);
 
-                // Конвертація байтів хешу в рядок
                 StringBuilder stringBuilder = new StringBuilder();
                 foreach (byte b in hashBytes)
                 {
