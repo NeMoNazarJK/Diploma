@@ -60,3 +60,6 @@ D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\Irony.dll
 D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\SixLabors.Fonts.dll
 D:\Github\Diploma\Diplom\Diplom\bin\Debug\net7.0-windows\XLParser.dll
 D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form3.resources
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form4.resources
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form5.resources
+D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form6.resources

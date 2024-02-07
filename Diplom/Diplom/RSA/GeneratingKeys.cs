@@ -71,12 +71,12 @@ internal class GeneratingKeys
             file.WriteLine("Час генерування приватного ключа: {0}", dTime.ToString());
         }
 
-        using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Privatekey.pem"))
+        using (StreamWriter file = new StreamWriter("..\\..\\..\\Key\\Privatekey.pem"))
         {
             file.WriteLine("{0}, {1}", d, n);
         }
 
-        using (StreamWriter file = new StreamWriter("..\\..\\..\\Files\\Publickey.pem"))
+        using (StreamWriter file = new StreamWriter("..\\..\\..\\Key\\Publickey.pem"))
         {
             file.WriteLine("{0}, {1}", e, n);
         }
