@@ -83,6 +83,5 @@ namespace Diplom
             legend.Docking = Docking.Right;
             ChartGenerating.Legends.Add(legend);
         }
-
     }
 }

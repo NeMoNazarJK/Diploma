@@ -28,6 +28,8 @@ namespace Diplom
         private Button btnChecklist;
         private Button OpenFormGT;
         private Button OpenFormM;
+        private Button OpenFiletClickA;
+        private Button OpenFiletClickS;
         private Label lblKeyTime;
         private Label lblSignatureTime;
         private Label lblChecklistTime;
@@ -145,6 +147,20 @@ namespace Diplom
                 Text = "Відкрити графік пам'яті"
             };
 
+            OpenFiletClickA = new Button
+            {
+                Location = new Point(10, 100),
+                Size = new Size(150, 45),
+                Text = "Відкрити додаткову інформацію"
+            };
+
+            OpenFiletClickS = new Button
+            {
+                Location = new Point(160, 100),
+                Size = new Size(150, 45),
+                Text = "Відкрити підписане повідомлення"
+            };
+
             btnGeneratingkeys.Click += (sender, e) =>
             {
                 using (Process process = Process.GetCurrentProcess())
@@ -220,6 +236,16 @@ namespace Diplom
                 oHacToolStrip3_Click(sender, e, f6);
             };
 
+            OpenFiletClickA.Click += (sender, e) =>
+            {
+                OpenFile.OpenFiletClickDigitalSignature(sender, e);
+            };
+
+            OpenFiletClickS.Click += (sender, e) =>
+            {
+                OpenFile.OpenFiletClickSignature(sender, e);
+            };
+
             lblmemoryInMegabytesKey.Text = $"Використана оперативна пам'ять: {memoryInMegabytesK} МБ для генерування ключів";
             lblKeyTime.Text = $"Час генерування ключа: {KeyTime}";
             lblmemoryInSignature.Text = $"Використана оперативна пам'ять: {memoryInSignature} МБ для підписання повідомлення";
@@ -234,6 +260,8 @@ namespace Diplom
             Controls.Add(btnChecklist);
             Controls.Add(OpenFormGT);
             Controls.Add(OpenFormM);
+            Controls.Add(OpenFiletClickA);
+            Controls.Add(OpenFiletClickS);
             Controls.Add(lblKeyTime);
             Controls.Add(lblSignatureTime);
             Controls.Add(lblChecklistTime);
