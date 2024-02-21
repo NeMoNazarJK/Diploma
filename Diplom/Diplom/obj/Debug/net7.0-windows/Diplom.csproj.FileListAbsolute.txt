@@ -63,3 +63,6 @@ D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form3.resources
 D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form4.resources
 D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form5.resources
 D:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.Form6.resources
+C:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.dll
+C:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\refint\Diplom.dll
+C:\Github\Diploma\Diplom\Diplom\obj\Debug\net7.0-windows\Diplom.pdb

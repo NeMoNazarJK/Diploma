@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "TsV2s8OYvK68xFo68kn0y3dGKGcXfYWZmQW8iMGLwgFyzsNFEziD+JlNUB4Hl6JoYDBXuqoNDS8/Ky0/9SagDw==",
+  "success": true,
+  "projectFilePath": "C:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nazar\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\nazar\\.nuget\\packages\\system.data.oledb\\8.0.0\\system.data.oledb.8.0.0.nupkg.sha512",
+    "C:\\Users\\nazar\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
+    "C:\\Users\\nazar\\.nuget\\packages\\system.diagnostics.performancecounter\\8.0.0\\system.diagnostics.performancecounter.8.0.0.nupkg.sha512",
+    "C:\\Users\\nazar\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
