@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Practical_Part_of_the_Diploma
@@ -17,6 +18,12 @@ namespace Practical_Part_of_the_Diploma
         private Button buttonOpenDataBase;
         private Button buttonGeneratingkeys;
         private ComboBox сomboBoxGeneratingkeys;
+        private Label labelKeyTime;
+        private Label labelKeyMemory;
+
+
+        private string KeyTime = "";
+        private double memoryInMegabytesKey = 0.0;
 
         private void InitializeFormElements()
         {
@@ -50,6 +57,13 @@ namespace Practical_Part_of_the_Diploma
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Location = new Point(920, 60),
                 Size = new Size(250, 45),
+            };
+
+            labelKeyTime = new Label
+            {
+                Location = new Point(630, 15),
+                AutoSize = true,
+                Text = ""
             };
 
             сomboBoxGeneratingkeys.Items.Add("2048");
@@ -89,17 +103,15 @@ namespace Practical_Part_of_the_Diploma
 
             buttonGeneratingkeys.Click += (sender, e) =>
             {
-                //using (Process process = Process.GetCurrentProcess())
-                //{
-                //    int bitLength = int.Parse(txtGeneratingkeys.Text);
+                using (Process process = Process.GetCurrentProcess())
+                {
 
-                //    GeneratingKeys.OnGeneratingKeysClick(sender, e, txtGeneratingkeys.Text, out PrivatekeyTime, out PublickeyTime);
-                //    //lblPrivatekeyTime.Text = $"×àñ ãåíåðóâàííÿ ïðèâàòíîãî êëþ÷à: {PrivatekeyTime}";
-                //    //lblPublickeyTime.Text = $"×àñ ãåíåðóâàííÿ ïóáë³÷íîãî êëþ÷à: {PublickeyTime}";
-                //}
-                //lblmemoryInMegabytesKey.Text = $"Âèêîðèñòàíà îïåðàòèâíà ïàì'ÿòü: {memoryInMegabytesK} ÌÁ äëÿ ãåíåðóâàííÿ êëþ÷³â";
+                    //GeneratingKeys.OnGeneratingKeysClick(sender, e, сomboBoxGeneratingkeys, out KeyTime);
+                    labelKeyTime.Text = $"×àñ ãåíåðóâàííÿ ïðèâàòíîãî êëþ÷à: {KeyTime}";
+                }
+                labelKeyMemory.Text = $"Âèêîðèñòàíà îïåðàòèâíà ïàì'ÿòü: {memoryInMegabytesKey} ÌÁ äëÿ ãåíåðóâàííÿ êëþ÷³â";
 
-                //MessageBox.Show("Êëþ÷³ óñï³øíî çãåíåðîâàí³.");
+                MessageBox.Show("Клюці згенерувалися");
             };
 
             Controls.Add(dataGridViewDataBase);
