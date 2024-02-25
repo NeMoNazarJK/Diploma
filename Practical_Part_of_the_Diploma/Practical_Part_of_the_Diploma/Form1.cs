@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Practical_Part_of_the_Diploma.RSA;
 
 namespace Practical_Part_of_the_Diploma
 {
@@ -61,9 +62,9 @@ namespace Practical_Part_of_the_Diploma
 
             labelKeyTime = new Label
             {
-                Location = new Point(630, 15),
+                Location = new Point(1180, 15),
                 AutoSize = true,
-                Text = ""
+                Text = $"Час генерування ключа: {KeyTime}"
             };
 
             сomboBoxGeneratingkeys.Items.Add("2048");
@@ -105,19 +106,25 @@ namespace Practical_Part_of_the_Diploma
             {
                 using (Process process = Process.GetCurrentProcess())
                 {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
+                    GeneratingKeys.OnGeneratingKeysClick(sender, e, сomboBoxGeneratingkeys.SelectedItem.ToString());
+                    stopwatch.Stop();
+                    TimeSpan GeneratingKey = stopwatch.Elapsed;
+                    KeyTime = GeneratingKey.ToString();
 
-                    //GeneratingKeys.OnGeneratingKeysClick(sender, e, сomboBoxGeneratingkeys, out KeyTime);
-                    labelKeyTime.Text = $"×àñ ãåíåðóâàííÿ ïðèâàòíîãî êëþ÷à: {KeyTime}";
+                    labelKeyTime.Text = $"Час генерування ключа: {KeyTime}";
                 }
-                labelKeyMemory.Text = $"Âèêîðèñòàíà îïåðàòèâíà ïàì'ÿòü: {memoryInMegabytesKey} ÌÁ äëÿ ãåíåðóâàííÿ êëþ÷³â";
+                //labelKeyMemory.Text = $"Виділена пам'ять: {memoryInMegabytesKey} МБ для створення ключа";
 
-                MessageBox.Show("Клюці згенерувалися");
+                MessageBox.Show("Ключі згенерувалися");
             };
 
             Controls.Add(dataGridViewDataBase);
             Controls.Add(buttonOpenDataBase);
             Controls.Add(buttonGeneratingkeys);
             Controls.Add(сomboBoxGeneratingkeys);
+            Controls.Add(labelKeyTime);
         }
     }
 }
