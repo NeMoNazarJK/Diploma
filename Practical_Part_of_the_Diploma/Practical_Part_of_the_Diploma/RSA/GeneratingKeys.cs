@@ -28,12 +28,12 @@ namespace Practical_Part_of_the_Diploma.RSA
 
             using (StreamWriter file = new StreamWriter(Path))
             {
-                file.WriteLine("Äîâæèíà: {0} á³ò", bitLength);
-                file.WriteLine("Ïåðøå ïðîñòå ÷èñëî: {0}", p);               
-                file.WriteLine("Äðóãå ïðîñòå ÷èñëî: {0}", q);
-                file.WriteLine("Çíà÷åííÿ ôóíêö³¿ Åëüâîðà(phi): {0}", phi);
-                file.WriteLine("Ïóáë³÷íèé êëþ÷ (e, n): ({0}, {1})", e, n);
-                file.WriteLine("Ïðèâàòíèé êëþ÷ (d, n): ({0}, {1})", d, n);
+                file.WriteLine("Довжина: {0} біт", bitLength);
+                file.WriteLine("Перше просте число: {0}", p);
+                file.WriteLine("Друге просте число: {0}", q);
+                file.WriteLine("Значення функції Ельвора(phi): {0}", phi);
+                file.WriteLine("Публічний ключ (e, n): ({0}, {1})", e, n);
+                file.WriteLine("Приватний ключ (d, n): ({0}, {1})", d, n);
             }
 
             using (StreamWriter file = new StreamWriter(Privatekey))
@@ -127,7 +127,7 @@ namespace Practical_Part_of_the_Diploma.RSA
         public static BigInteger ModInverse(BigInteger a, BigInteger m)
         {
             if (m == 0)
-                throw new ArgumentException("Àðãóìåíò 'm' íå ìîæå äîð³âíþâàòè íóëþ.");
+                throw new ArgumentException("Аргумент 'm' не може дорівнювати нулю.");
             BigInteger m0 = m;
             BigInteger y = 0, x = 1;
             if (a % m == 0)
