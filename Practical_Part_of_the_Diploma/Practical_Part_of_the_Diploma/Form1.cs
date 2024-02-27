@@ -13,18 +13,23 @@ namespace Practical_Part_of_the_Diploma
         public Form1()
         {
             InitializeFormElements();
+
+            Icon = new Icon("..\\..\\..\\Icon\\Encryption.ico");
         }
 
         private DataGridView dataGridViewDataBase;
+        private GroupBox groupBoxButton;
+        private GroupBox groupBoxLabelTime;
+        private GroupBox groupBoxLabelMemory;
         private Button buttonOpenDataBase;
         private Button buttonGeneratingkeys;
         private ComboBox сomboBoxGeneratingkeys;
         private Label labelKeyTime;
         private Label labelKeyMemory;
 
-
         private string KeyTime = "";
         private double memoryInMegabytesKey = 0.0;
+        private string[] keySizes = { "2048", "3072", "4096" };
 
         private void InitializeFormElements()
         {
@@ -39,16 +44,30 @@ namespace Practical_Part_of_the_Diploma
                 Size = new Size(900, 220),
             };
 
+            groupBoxButton = new GroupBox()
+            {
+                Location = new Point(920, 10),
+                Size = new Size(350, 250),
+                Text = "Елементи керування"
+            };
+
+            groupBoxLabelTime = new GroupBox()
+            {
+                Location = new Point(1280, 10),
+                Size = new Size(320, 250),
+                Text = "Час"
+            };
+
             buttonOpenDataBase = new Button()
             {
-                Location = new Point(920,10),
+                Location = new Point((groupBoxButton.Width - 250) / 2, 30), // розташування по горизонталі: середина groupBoxButton
                 Size = new Size(250, 45),
                 Text = "Відкрити базу даних",
             };
 
             buttonGeneratingkeys = new Button()
             {
-                Location = new Point(920, 110),
+                Location = new Point((groupBoxButton.Width - 250) / 2, 140),
                 Size = new Size(250, 45),
                 Text = "Згенерувати клюці RSA",
             };
@@ -56,21 +75,31 @@ namespace Practical_Part_of_the_Diploma
             сomboBoxGeneratingkeys = new ComboBox()
             {
                 DropDownStyle = ComboBoxStyle.DropDownList,
-                Location = new Point(920, 60),
+                Location = new Point((groupBoxButton.Width - 250) / 2, 85),
                 Size = new Size(250, 45),
             };
 
             labelKeyTime = new Label
             {
-                Location = new Point(1180, 15),
+                Location = new Point(10, 30),
                 AutoSize = true,
                 Text = $"Час генерування ключа: {KeyTime}"
             };
 
-            сomboBoxGeneratingkeys.Items.Add("2048");
-            сomboBoxGeneratingkeys.Items.Add("3072");
-            сomboBoxGeneratingkeys.Items.Add("4096");
+            labelKeyMemory = new Label
+            {
+                Location = new Point(1600, 15),
+                AutoSize = true,
+                Text = $"Виділена пам'ять: {memoryInMegabytesKey} МБ для створення ключа"
+            };
 
+            groupBoxButton.Controls.Add(buttonOpenDataBase);
+            groupBoxButton.Controls.Add(buttonGeneratingkeys);
+            groupBoxButton.Controls.Add(сomboBoxGeneratingkeys);
+
+            groupBoxLabelTime.Controls.Add(labelKeyTime);
+
+            сomboBoxGeneratingkeys.Items.AddRange(keySizes);
             сomboBoxGeneratingkeys.SelectedIndex = 0;
 
             buttonOpenDataBase.Click += (sender, e) =>
@@ -115,16 +144,15 @@ namespace Practical_Part_of_the_Diploma
 
                     labelKeyTime.Text = $"Час генерування ключа: {KeyTime}";
                 }
-                //labelKeyMemory.Text = $"Виділена пам'ять: {memoryInMegabytesKey} МБ для створення ключа";
+                labelKeyMemory.Text = $"Виділена пам'ять: {memoryInMegabytesKey} МБ для створення ключа";
 
                 MessageBox.Show("Ключі згенерувалися");
             };
 
             Controls.Add(dataGridViewDataBase);
-            Controls.Add(buttonOpenDataBase);
-            Controls.Add(buttonGeneratingkeys);
-            Controls.Add(сomboBoxGeneratingkeys);
-            Controls.Add(labelKeyTime);
+            Controls.Add(groupBoxButton);
+            Controls.Add(groupBoxLabelTime);
+            Controls.Add(labelKeyMemory);
         }
     }
 }
