@@ -26,6 +26,11 @@ namespace Practical_Part_of_the_Diploma.RSA
             BigInteger e = GetRandomCoprime(phi);
             BigInteger d = ModInverse(e, phi);
 
+
+            string nX = n.ToString("X");
+            string eX = e.ToString("X");
+            string dX = d.ToString("X");
+
             using (StreamWriter file = new StreamWriter(Path))
             {
                 file.WriteLine("Довжина: {0} біт", bitLength);
@@ -34,16 +39,17 @@ namespace Practical_Part_of_the_Diploma.RSA
                 file.WriteLine("Значення функції Ельвора(phi): {0}", phi);
                 file.WriteLine("Публічний ключ (e, n): ({0}, {1})", e, n);
                 file.WriteLine("Приватний ключ (d, n): ({0}, {1})", d, n);
+                file.WriteLine("Приватний ключ (e, d, n): ({0}, {1}, {2})", eX, dX, nX);
             }
 
             using (StreamWriter file = new StreamWriter(Privatekey))
             {
-                file.WriteLine("{0}, {1}", d, n);
+                file.WriteLine("{0}, {1}", dX, nX);
             }
 
             using (StreamWriter file = new StreamWriter(Publickey))
             {
-                file.WriteLine("{0}, {1}", e, n);
+                file.WriteLine("{0}, {1}", eX, nX);
             }
 
             return $"Generated keys: d={d}, n={n}, e={e}";

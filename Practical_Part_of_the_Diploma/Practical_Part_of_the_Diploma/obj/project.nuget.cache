@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U6mYZ9+8megY3azdOFnT3Ele+Uvy0/q4I/cHXxtEVc8L0DP9h95owqTXdtLdVgpiSyylmYslyqATzyS/mBqyWA==",
+  "dgSpecHash": "TsV2s8OYvK68xFo68kn0y3dGKGcXfYWZmQW8iMGLwgFyzsNFEziD+JlNUB4Hl6JoYDBXuqoNDS8/Ky0/9SagDw==",
   "success": true,
-  "projectFilePath": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
+  "projectFilePath": "C:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nazar\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
     "C:\\Users\\nazar\\.nuget\\packages\\system.data.oledb\\8.0.0\\system.data.oledb.8.0.0.nupkg.sha512",
