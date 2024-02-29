@@ -74,7 +74,6 @@ namespace Practical_Part_of_the_Diploma.RSA
             }
         }
 
-
         public static string Encrypt(string message, BigInteger e, BigInteger n, string alphabet)
         {
             StringBuilder encryptedMessage = new StringBuilder();
@@ -89,7 +88,7 @@ namespace Practical_Part_of_the_Diploma.RSA
                 else
                 {
                     BigInteger encryptedChar = BigInteger.ModPow(new BigInteger(index), e, n);
-                    encryptedMessage.Append(encryptedChar);
+                    encryptedMessage.Append(encryptedChar.ToString("X"));
                     encryptedMessage.Append(" ");
                 }
             }

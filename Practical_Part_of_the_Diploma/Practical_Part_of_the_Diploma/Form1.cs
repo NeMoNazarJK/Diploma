@@ -36,7 +36,7 @@ namespace Practical_Part_of_the_Diploma
         private string EncryptionTime = "";
         private double memoryInMegabytesKey = 0.0;
         private double memoryInMegabytesEncryption = 0.0;
-        private string[] keySizes = { "2048", "3072", "4096" };
+        private string[] keySizes = { "16", "2048", "3072", "4096" };
 
         private void InitializeFormElements()
         {
@@ -256,12 +256,24 @@ namespace Practical_Part_of_the_Diploma
                                 {
                                     string id = row.Cells[0].Value.ToString();
                                     string name = row.Cells[1].Value.ToString();
+                                    string date_of_entry = row.Cells[2].Value.ToString();
+                                    string age = row.Cells[3].Value.ToString();
+                                    string curriculum = row.Cells[4].Value.ToString();
+                                    string group = row.Cells[5].Value.ToString();
+                                    string specialty = row.Cells[6].Value.ToString();
 
-                                    string query = "UPDATE Studens SET Name = ? WHERE id = ?";
+
+                                    string query = "UPDATE Studens SET Name = ?, Date_of_entry = ?, Age = ?, Curriculum = ?, [Group] = ?, Specialty = ? WHERE id = ?";
                                     OleDbCommand dbCommand = new OleDbCommand(query, connection);
                                     dbCommand.Parameters.AddWithValue("@name", name);
+                                    dbCommand.Parameters.AddWithValue("@date_of_entry", date_of_entry);
+                                    dbCommand.Parameters.AddWithValue("@age", age);
+                                    dbCommand.Parameters.AddWithValue("@curriculum", curriculum);
+                                    dbCommand.Parameters.AddWithValue("@group", group);
+                                    dbCommand.Parameters.AddWithValue("@specialty", specialty);
                                     dbCommand.Parameters.AddWithValue("@id", id);
                                     dbCommand.ExecuteNonQuery();
+
                                 }
                             }
 
