@@ -11,10 +11,8 @@ namespace Practical_Part_of_the_Diploma.RSA
 {
     internal class EncryptDataBase
     {
-        public static void OnEncryptDataBaseClick(object sender, EventArgs a, string PublickeyPath, DataTable dataTable, DataGridView dataGridView)
-        {
-            string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
-
+        public static void OnEncryptDataBaseClick(object sender, EventArgs a, string PublickeyPath, DataTable dataTable, DataGridView dataGridView, string alphabet)
+        {          
             try
             {
                 string fileContent = File.ReadAllText(PublickeyPath);

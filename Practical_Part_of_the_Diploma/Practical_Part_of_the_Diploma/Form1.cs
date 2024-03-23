@@ -25,18 +25,25 @@ namespace Practical_Part_of_the_Diploma
         private Button buttonOpenDataBase;
         private Button buttonGeneratingkeys;
         private Button buttonEncryption;
+        private Button buttonDecrypted;
         private Button buttonEncryptionSave;
         private ComboBox сomboBoxGeneratingkeys;
         private Label labelKeyTime;
         private Label labelEncryptionTime;
+        private Label labelDecryptedTime;
         private Label labelKeyMemory;
         private Label labelEncryptionMemory;
+        private Label labelDecryptedMemory;
 
         private string KeyTime = "";
         private string EncryptionTime = "";
+        private string DecryptedTime = "";
         private double memoryInMegabytesKey = 0.0;
         private double memoryInMegabytesEncryption = 0.0;
+        private double memoryInMegabytesDecrypted = 0.0;
         private string[] keySizes = { "16", "2048", "3072", "4096" };
+
+        private string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
 
         private void InitializeFormElements()
         {
@@ -109,9 +116,20 @@ namespace Practical_Part_of_the_Diploma
                 Font = new Font("Comic Sans MS", 12, FontStyle.Bold | FontStyle.Italic)
             };
 
-            buttonEncryptionSave = new Button()
+            buttonDecrypted = new Button()
             {
                 Location = new Point((groupBoxButton.Width - 250) / 2, 250),
+                Size = new Size(250, 45),
+                Text = "Розшифрувати Базу даних",
+                BackColor = Color.Black,
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Comic Sans MS", 12, FontStyle.Bold | FontStyle.Italic)
+            };
+
+            buttonEncryptionSave = new Button()
+            {
+                Location = new Point((groupBoxButton.Width - 250) / 2, 305),
                 Size = new Size(250, 45),
                 Text = "Перезаписати Базу даних",
                 BackColor = Color.Black,
@@ -144,6 +162,13 @@ namespace Practical_Part_of_the_Diploma
                 Text = $"Час зашифрування бази даних: {EncryptionTime}"
             };
 
+            labelDecryptedTime = new Label
+            {
+                Location = new Point(10, 80),
+                AutoSize = true,
+                Text = $"Час розшифрування бази даних: {DecryptedTime}"
+            };
+
             labelKeyMemory = new Label
             {
                 Location = new Point(10, 30),
@@ -158,17 +183,12 @@ namespace Practical_Part_of_the_Diploma
                 Text = $"Виділена пам'ять: {memoryInMegabytesEncryption} МБ для шифрування бази даних"
             };
 
-            groupBoxButton.Controls.Add(buttonOpenDataBase);
-            groupBoxButton.Controls.Add(buttonGeneratingkeys);
-            groupBoxButton.Controls.Add(buttonEncryption);
-            groupBoxButton.Controls.Add(buttonEncryptionSave);
-            groupBoxButton.Controls.Add(сomboBoxGeneratingkeys);
-
-            groupBoxLabelTime.Controls.Add(labelKeyTime);
-            groupBoxLabelTime.Controls.Add(labelEncryptionTime);
-
-            groupBoxLabelMemory.Controls.Add(labelKeyMemory);
-            groupBoxLabelMemory.Controls.Add(labelEncryptionMemory);
+            labelDecryptedMemory = new Label
+            {
+                Location = new Point(10, 80),
+                AutoSize = true,
+                Text = $"Виділена пам'ять: {memoryInMegabytesDecrypted} МБ для розшифроування бази даних"
+            };
 
             сomboBoxGeneratingkeys.Items.AddRange(keySizes);
             сomboBoxGeneratingkeys.SelectedIndex = 0;
@@ -223,7 +243,7 @@ namespace Practical_Part_of_the_Diploma
 
                     Stopwatch stopwatch = new Stopwatch();
                     stopwatch.Start();
-                    EncryptDataBase.OnEncryptDataBaseClick(sender, a, PublickeyPath, dataTable, dataGridViewDataBase);
+                    EncryptDataBase.OnEncryptDataBaseClick(sender, a, PublickeyPath, dataTable, dataGridViewDataBase, alphabet);
                     stopwatch.Stop();
                     TimeSpan Encryption = stopwatch.Elapsed;
                     EncryptionTime = Encryption.ToString();
@@ -234,6 +254,29 @@ namespace Practical_Part_of_the_Diploma
                 labelEncryptionMemory.Text = $"Виділена пам'ять: {memoryInMegabytesEncryption} МБ для шифрування бази даних";
 
                 MessageBox.Show("Шифрування завершилося");
+            };
+
+            buttonDecrypted.Click += (sender, a) =>
+            {
+                using (Process process = Process.GetCurrentProcess())
+                {
+                    string PrivatekeyPath = OpenFile.OnOpenFileKeyClick(sender, a);
+
+                    DataTable dataTable = (DataTable)dataGridViewDataBase.DataSource;
+
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
+                    DecryptedDataBase.OnDecryptedDataBaseClick(sender, a, PrivatekeyPath, dataTable, dataGridViewDataBase, alphabet);
+                    stopwatch.Stop();
+                    TimeSpan Decrypted = stopwatch.Elapsed;
+                    DecryptedTime = Decrypted.ToString();
+                    memoryInMegabytesDecrypted = process.PrivateMemorySize64 / (1024 * 1024);
+
+                    labelDecryptedTime.Text = $"Час розшифрування бази даних: {DecryptedTime}";
+                }
+                labelDecryptedMemory.Text = $"Виділена пам'ять: {memoryInMegabytesDecrypted} МБ для розшифроування бази даних";
+
+                MessageBox.Show("Розшифрування завершилося");
             };
 
             buttonEncryptionSave.Click += (sender, a) =>
@@ -290,6 +333,21 @@ namespace Practical_Part_of_the_Diploma
                     MessageBox.Show("Джерело даних DataGridView є пустим.");
                 }
             };
+
+            groupBoxButton.Controls.Add(buttonOpenDataBase);
+            groupBoxButton.Controls.Add(buttonGeneratingkeys);
+            groupBoxButton.Controls.Add(buttonEncryption);
+            groupBoxButton.Controls.Add(buttonDecrypted);
+            groupBoxButton.Controls.Add(buttonEncryptionSave);
+            groupBoxButton.Controls.Add(сomboBoxGeneratingkeys);
+
+            groupBoxLabelTime.Controls.Add(labelKeyTime);
+            groupBoxLabelTime.Controls.Add(labelEncryptionTime);
+            groupBoxLabelTime.Controls.Add(labelDecryptedTime);
+
+            groupBoxLabelMemory.Controls.Add(labelKeyMemory);
+            groupBoxLabelMemory.Controls.Add(labelEncryptionMemory);
+            groupBoxLabelMemory.Controls.Add(labelDecryptedMemory);
 
             Controls.Add(dataGridViewDataBase);
             Controls.Add(groupBoxButton);
