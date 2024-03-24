@@ -26,7 +26,8 @@ namespace Practical_Part_of_the_Diploma
         private Button buttonGeneratingkeys;
         private Button buttonEncryption;
         private Button buttonDecrypted;
-        private Button buttonEncryptionSave;
+        private Button buttonSave;
+        private Button buttonSchedule;
         private ComboBox сomboBoxGeneratingkeys;
         private Label labelKeyTime;
         private Label labelEncryptionTime;
@@ -41,7 +42,7 @@ namespace Practical_Part_of_the_Diploma
         private double memoryInMegabytesKey = 0.0;
         private double memoryInMegabytesEncryption = 0.0;
         private double memoryInMegabytesDecrypted = 0.0;
-        private string[] keySizes = { "16", "2048", "3072", "4096" };
+        private string[] keySizes = { "2048", "3072", "4096" };
 
         private string alphabet = "—ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯabcdefghijklmnopqrstuvwxyzабвгґдеєжзиіїйклмнопрстуфхцчшщьюя \"\r\n'’.,:;!?-1234567890«»";
 
@@ -127,11 +128,22 @@ namespace Practical_Part_of_the_Diploma
                 Font = new Font("Comic Sans MS", 12, FontStyle.Bold | FontStyle.Italic)
             };
 
-            buttonEncryptionSave = new Button()
+            buttonSave = new Button()
             {
                 Location = new Point((groupBoxButton.Width - 250) / 2, 305),
                 Size = new Size(250, 45),
                 Text = "Перезаписати Базу даних",
+                BackColor = Color.Black,
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Comic Sans MS", 12, FontStyle.Bold | FontStyle.Italic)
+            };
+
+            buttonSchedule = new Button()
+            {
+                Location = new Point((groupBoxButton.Width - 250) / 2, 360),
+                Size = new Size(250, 45),
+                Text = "Відкрити графік",
                 BackColor = Color.Black,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
@@ -279,7 +291,7 @@ namespace Practical_Part_of_the_Diploma
                 MessageBox.Show("Розшифрування завершилося");
             };
 
-            buttonEncryptionSave.Click += (sender, a) =>
+            buttonSave.Click += (sender, a) =>
             {
                 if (dataGridViewDataBase.DataSource != null)
                 {
@@ -338,7 +350,8 @@ namespace Practical_Part_of_the_Diploma
             groupBoxButton.Controls.Add(buttonGeneratingkeys);
             groupBoxButton.Controls.Add(buttonEncryption);
             groupBoxButton.Controls.Add(buttonDecrypted);
-            groupBoxButton.Controls.Add(buttonEncryptionSave);
+            groupBoxButton.Controls.Add(buttonSave);
+            groupBoxButton.Controls.Add(buttonSchedule);
             groupBoxButton.Controls.Add(сomboBoxGeneratingkeys);
 
             groupBoxLabelTime.Controls.Add(labelKeyTime);

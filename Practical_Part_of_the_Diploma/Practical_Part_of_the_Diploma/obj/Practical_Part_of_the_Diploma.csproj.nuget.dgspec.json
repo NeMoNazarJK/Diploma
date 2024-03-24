@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj": {}
+    "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj": {}
   },
   "projects": {
-    "C:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj": {
+    "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
+        "projectUniqueName": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
         "projectName": "Practical_Part_of_the_Diploma",
-        "projectPath": "C:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
+        "projectPath": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
         "packagesPath": "C:\\Users\\nazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\obj\\",
+        "outputPath": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\nazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -68,7 +69,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

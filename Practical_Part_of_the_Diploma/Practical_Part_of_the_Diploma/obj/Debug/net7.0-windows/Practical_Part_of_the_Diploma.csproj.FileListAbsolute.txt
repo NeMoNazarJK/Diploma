@@ -49,6 +49,7 @@ D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bi
 D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\runtimes\win\lib\net7.0\System.Diagnostics.EventLog.Messages.dll
 D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\runtimes\win\lib\net7.0\System.Diagnostics.EventLog.dll
 D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\runtimes\win\lib\net7.0\System.Diagnostics.PerformanceCounter.dll
-D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\obj\Debug\net7.0-windows\Practical_Part_of_the_Diploma.csproj.CopyComplete
 D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\obj\Debug\net7.0-windows\Practical_Part_of_the_Diploma.genruntimeconfig.cache
 D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\obj\Debug\net7.0-windows\ref\Practical_Part_of_the_Diploma.dll
+D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\obj\Debug\net7.0-windows\Practical_Part_of_the_Diploma.sourcelink.json
+D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\obj\Debug\net7.0-windows\Practica.F20DE19A.Up2Date

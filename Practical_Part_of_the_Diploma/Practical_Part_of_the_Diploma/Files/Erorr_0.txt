@@ -1,1 +1,0 @@
-Помилка під час оновлення даних: No value given for one or more required parameters.
