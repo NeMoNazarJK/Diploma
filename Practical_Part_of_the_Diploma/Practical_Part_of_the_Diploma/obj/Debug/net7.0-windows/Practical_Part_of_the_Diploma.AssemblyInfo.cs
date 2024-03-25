@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Practical_Part_of_the_Diploma")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93dc8a403d4afcb73f0773e5f9644ec626938f36")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Practical_Part_of_the_Diploma")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Practical_Part_of_the_Diploma")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

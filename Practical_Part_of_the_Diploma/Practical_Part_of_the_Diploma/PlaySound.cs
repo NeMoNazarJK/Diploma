@@ -26,7 +26,7 @@ namespace Practical_Part_of_the_Diploma
 
                         while (outputDevice.PlaybackState == PlaybackState.Playing)
                         {
-                            System.Threading.Thread.Sleep(number);
+                            Thread.Sleep(number);
                         }
                     }
                 }

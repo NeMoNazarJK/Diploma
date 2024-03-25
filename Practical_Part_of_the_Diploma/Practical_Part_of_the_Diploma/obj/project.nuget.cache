@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MQk02HhzkzYUF7hd/UHTkejbZAqN0KLF6zhhHN0EDawVsxF15hhPm05TSXDO86tBpbALFPT3Gd9UiIzM9SL7+w==",
+  "dgSpecHash": "eMYrDAavhvZb+N3Mhoc6U89JDFbVHOBdm9xXMOR5OodGH/D95s9CVtWFexyNBYavBc8PALqZlVJ1LY/dPFfR+Q==",
   "success": true,
-  "projectFilePath": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
+  "projectFilePath": "C:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nazar\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\nazar\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

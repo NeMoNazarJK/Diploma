@@ -61,3 +61,12 @@ D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bi
 D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.WaveFormRenderer.dll
 D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.WinForms.dll
 D:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.WinMM.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.Asio.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.Core.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.Midi.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.Wasapi.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.WaveFormRenderer.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.WinForms.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\bin\Debug\net7.0-windows\NAudio.WinMM.dll
+C:\Github\Diploma\Practical_Part_of_the_Diploma\Practical_Part_of_the_Diploma\obj\Debug\net7.0-windows\Practical_Part_of_the_Diploma.Loading.resources
