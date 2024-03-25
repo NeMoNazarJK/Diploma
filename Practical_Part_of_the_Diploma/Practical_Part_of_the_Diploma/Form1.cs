@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Practical_Part_of_the_Diploma.RSA;
 using System.Data.Common;
+using NAudio.Wave;
+using System.Media;
 
 namespace Practical_Part_of_the_Diploma
 {
@@ -39,6 +41,14 @@ namespace Practical_Part_of_the_Diploma
         private string KeyTime = "";
         private string EncryptionTime = "";
         private string DecryptedTime = "";
+        private string Loading = "Загрузка...";
+        private string LoadingPath = "..\\..\\..\\Icon\\loading.gif";
+        private string ErrorPath = "..\\..\\..\\Sounds\\Error.mp3";
+        private string SuccessPath = "..\\..\\..\\Sounds\\Success.mp3";
+        private float ErrorVolume = 0.02f;
+        private float SuccessVolume = 0.02f;
+        private int ErrorNumber = 2;
+        private int SuccessNumber = 2;
         private double memoryInMegabytesKey = 0.0;
         private double memoryInMegabytesEncryption = 0.0;
         private double memoryInMegabytesDecrypted = 0.0;
@@ -212,10 +222,15 @@ namespace Practical_Part_of_the_Diploma
                 {
                     dataGridViewDataBase.DataSource = dataTable;
                     dataGridViewDataBase.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                    MessageBox.Show($"Базу даних відкрито");
+
+                    PlaySound.OnPlaySoundClick(sender, a, SuccessPath, SuccessVolume, SuccessNumber);
+
+                    MessageBox.Show($"Базу даних відкрито");                    
                 }
                 else
                 {
+                    PlaySound.OnPlaySoundClick(sender, a, ErrorPath, ErrorVolume, ErrorNumber);
+
                     MessageBox.Show($"Не вдалося відкрити базу даних");
                 }
             };
@@ -223,72 +238,33 @@ namespace Practical_Part_of_the_Diploma
             сomboBoxGeneratingkeys.SelectedIndexChanged += (sender, a) =>
             {
                 string selectedOption = сomboBoxGeneratingkeys.SelectedItem.ToString();
+
+                PlaySound.OnPlaySoundClick(sender, a, SuccessPath, SuccessVolume, SuccessNumber);
+
                 MessageBox.Show($"Вибрано: {selectedOption}");
             };
 
             buttonGeneratingkeys.Click += (sender, a) =>
             {
-                using (Process process = Process.GetCurrentProcess())
-                {
-                    Stopwatch stopwatch = new Stopwatch();
-                    stopwatch.Start();
-                    GeneratingKeys.OnGeneratingKeysClick(sender, a, сomboBoxGeneratingkeys.SelectedItem.ToString());
-                    stopwatch.Stop();
-                    TimeSpan GeneratingKey = stopwatch.Elapsed;
-                    KeyTime = GeneratingKey.ToString();
-                    memoryInMegabytesKey = process.PrivateMemorySize64 / (1024 * 1024);
-
-                    labelKeyTime.Text = $"Час генерування ключа: {KeyTime}";
-                }
-                labelKeyMemory.Text = $"Виділена пам'ять: {memoryInMegabytesKey} МБ для створення ключа";
-
-                MessageBox.Show("Ключі згенерувалися");
+                GeneratingKeys.OnGeneratingKeysClick(sender, a, сomboBoxGeneratingkeys.SelectedItem.ToString(), Loading, LoadingPath, KeyTime, labelKeyTime, memoryInMegabytesKey, labelKeyMemory, SuccessPath, SuccessVolume, SuccessNumber);
             };
 
             buttonEncryption.Click += (sender, a) =>
             {
-                using (Process process = Process.GetCurrentProcess())
-                {
-                    string PublickeyPath = OpenFile.OnOpenFileKeyClick(sender, a);
+                string PublickeyPath = OpenFile.OnOpenFileKeyClick(sender, a);
 
-                    DataTable dataTable = (DataTable)dataGridViewDataBase.DataSource;
+                DataTable dataTable = (DataTable)dataGridViewDataBase.DataSource;
 
-                    Stopwatch stopwatch = new Stopwatch();
-                    stopwatch.Start();
-                    EncryptDataBase.OnEncryptDataBaseClick(sender, a, PublickeyPath, dataTable, dataGridViewDataBase, alphabet);
-                    stopwatch.Stop();
-                    TimeSpan Encryption = stopwatch.Elapsed;
-                    EncryptionTime = Encryption.ToString();
-                    memoryInMegabytesEncryption = process.PrivateMemorySize64 / (1024 * 1024);
-
-                    labelEncryptionTime.Text = $"Час зашифрування бази даних: {EncryptionTime}";
-                }
-                labelEncryptionMemory.Text = $"Виділена пам'ять: {memoryInMegabytesEncryption} МБ для шифрування бази даних";
-
-                MessageBox.Show("Шифрування завершилося");
+                EncryptDataBase.OnEncryptDataBaseClick(sender, a, PublickeyPath, dataTable, dataGridViewDataBase, alphabet, Loading, LoadingPath, EncryptionTime, labelEncryptionTime, memoryInMegabytesEncryption, labelEncryptionMemory, SuccessPath, SuccessVolume, SuccessNumber, ErrorPath, ErrorVolume, ErrorNumber);
             };
 
             buttonDecrypted.Click += (sender, a) =>
             {
-                using (Process process = Process.GetCurrentProcess())
-                {
-                    string PrivatekeyPath = OpenFile.OnOpenFileKeyClick(sender, a);
+                string PrivatekeyPath = OpenFile.OnOpenFileKeyClick(sender, a);
 
-                    DataTable dataTable = (DataTable)dataGridViewDataBase.DataSource;
+                DataTable dataTable = (DataTable)dataGridViewDataBase.DataSource;
 
-                    Stopwatch stopwatch = new Stopwatch();
-                    stopwatch.Start();
-                    DecryptedDataBase.OnDecryptedDataBaseClick(sender, a, PrivatekeyPath, dataTable, dataGridViewDataBase, alphabet);
-                    stopwatch.Stop();
-                    TimeSpan Decrypted = stopwatch.Elapsed;
-                    DecryptedTime = Decrypted.ToString();
-                    memoryInMegabytesDecrypted = process.PrivateMemorySize64 / (1024 * 1024);
-
-                    labelDecryptedTime.Text = $"Час розшифрування бази даних: {DecryptedTime}";
-                }
-                labelDecryptedMemory.Text = $"Виділена пам'ять: {memoryInMegabytesDecrypted} МБ для розшифроування бази даних";
-
-                MessageBox.Show("Розшифрування завершилося");
+                DecryptedDataBase.OnDecryptedDataBaseClick(sender, a, PrivatekeyPath, dataTable, dataGridViewDataBase, alphabet, Loading, LoadingPath, DecryptedTime, labelDecryptedTime, memoryInMegabytesDecrypted, labelDecryptedMemory, SuccessPath, SuccessVolume, SuccessNumber, ErrorPath, ErrorVolume, ErrorNumber);
             };
 
             buttonSave.Click += (sender, a) =>
@@ -332,16 +308,22 @@ namespace Practical_Part_of_the_Diploma
                                 }
                             }
 
+                            PlaySound.OnPlaySoundClick(sender, a, SuccessPath, SuccessVolume, SuccessNumber);
+
                             MessageBox.Show("Дані успішно оновлені у базі даних.");
                         }
                         catch (Exception ex)
                         {
+                            PlaySound.OnPlaySoundClick(sender, a, ErrorPath, ErrorVolume, ErrorNumber);
+
                             MessageBox.Show($"Помилка під час оновлення даних: {ex.Message}");
                         }
                     }
                 }
                 else
                 {
+                    PlaySound.OnPlaySoundClick(sender, a, ErrorPath, ErrorVolume, ErrorNumber);
+
                     MessageBox.Show("Джерело даних DataGridView є пустим.");
                 }
             };

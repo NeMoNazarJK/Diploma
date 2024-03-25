@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Numerics;
@@ -11,64 +12,97 @@ namespace Practical_Part_of_the_Diploma.RSA
 {
     internal class DecryptedDataBase
     {
-        private const string test = "..\\..\\..\\Files\\test.txt";
-
-        public static void OnDecryptedDataBaseClick(object sender, EventArgs a, string PrivatekeyPath, DataTable dataTable, DataGridView dataGridView, string alphabet)
+        public static async void OnDecryptedDataBaseClick(object sender, EventArgs a, string PrivatekeyPath, DataTable dataTable, DataGridView dataGridView, string alphabet, string Loading, string LoadingPath, string DecryptedTime, Label labelDecryptedTime, double memoryInMegabytesDecrypted, Label labelDecryptedMemory, string SuccessPath, float SuccessVolume, int SuccessNumber, string ErrorPath, float ErrorVolume, int ErrorNumber)
         {
             try
             {
-                string fileContent = File.ReadAllText(PrivatekeyPath);
-                string[] parts = fileContent.Split(',');
-
-                if (parts.Length >= 2)
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                using (Process process = Process.GetCurrentProcess())
                 {
-                    BigInteger d;
-                    BigInteger n;
-
-                    if (BigInteger.TryParse(parts[0], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out d) &&
-                        BigInteger.TryParse(parts[1], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out n))
+                    using (Form loadingForm = LoadingMessageBox.ShowLoadingMessageBox(Loading, LoadingPath))
                     {
-                        DataTable decryptedDataTable = new DataTable();
+                        loadingForm.Show();
 
-                        foreach (DataColumn column in dataTable.Columns)
+                        await Task.Run(() =>
                         {
-                            decryptedDataTable.Columns.Add(column.ColumnName, typeof(string));
-                        }
+                            string fileContent = File.ReadAllText(PrivatekeyPath);
+                            string[] parts = fileContent.Split(',');
 
-                        foreach (DataRow row in dataTable.Rows)
-                        {
-                            DataRow decryptedRow = decryptedDataTable.NewRow();
-
-                            decryptedRow[0] = row[0];
-
-                            for (int i = 1; i < dataTable.Columns.Count; i++)
+                            if (parts.Length >= 2)
                             {
-                                string message = row[i].ToString();
-                                string decryptedMessage = Decrypted(message, d, n, alphabet);
-                                decryptedRow[i] = decryptedMessage.ToString();
+                                BigInteger d;
+                                BigInteger n;
+
+                                if (BigInteger.TryParse(parts[0], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out d) &&
+                                    BigInteger.TryParse(parts[1], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out n))
+                                {
+                                    DataTable decryptedDataTable = new DataTable();
+
+                                    foreach (DataColumn column in dataTable.Columns)
+                                    {
+                                        decryptedDataTable.Columns.Add(column.ColumnName, typeof(string));
+                                    }
+
+                                    foreach (DataRow row in dataTable.Rows)
+                                    {
+                                        DataRow decryptedRow = decryptedDataTable.NewRow();
+
+                                        decryptedRow[0] = row[0];
+
+                                        for (int i = 1; i < dataTable.Columns.Count; i++)
+                                        {
+                                            string message = row[i].ToString();
+                                            string decryptedMessage = Decrypted(message, d, n, alphabet);
+                                            decryptedRow[i] = decryptedMessage.ToString();
+                                        }
+
+                                        decryptedDataTable.Rows.Add(decryptedRow);
+                                    }
+
+                                    dataGridView.Invoke((MethodInvoker)delegate
+                                    {
+                                        dataGridView.DataSource = decryptedDataTable;
+                                    });
+                                }
+                                else
+                                {
+                                    PlaySound.OnPlaySoundClick(sender, a, ErrorPath, ErrorVolume, ErrorNumber);
+
+                                    MessageBox.Show($"Файл має неправильний формат ключа.");
+                                }
                             }
+                            else
+                            {
+                                PlaySound.OnPlaySoundClick(sender, a, ErrorPath, ErrorVolume, ErrorNumber);
 
-                            decryptedDataTable.Rows.Add(decryptedRow);
-                        }
+                                MessageBox.Show($"Файл має неправильний формат ключа.");
+                            }
+                        });
+                    }
+                    memoryInMegabytesDecrypted = process.PrivateMemorySize64 / (1024 * 1024);
+                }
+                stopwatch.Stop();
+                TimeSpan Decrypteds = stopwatch.Elapsed;
+                DecryptedTime = Decrypteds.ToString();
 
-                        dataGridView.DataSource = decryptedDataTable;
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Файл має неправильний формат ключа.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show($"Файл має неправильний формат ключа.");
-                }
+                labelDecryptedTime.Text = $"Час розшифрування бази даних: {DecryptedTime}";
+                labelDecryptedMemory.Text = $"Виділена пам'ять: {memoryInMegabytesDecrypted} МБ для розшифроування бази даних";
+
+                PlaySound.OnPlaySoundClick(sender, a, SuccessPath, SuccessVolume, SuccessNumber);
+
+                MessageBox.Show("Розшифрування завершилося");
             }
             catch (FileNotFoundException)
             {
+                PlaySound.OnPlaySoundClick(sender, a, ErrorPath, ErrorVolume, ErrorNumber);
+
                 MessageBox.Show($"Файл за шляхом {PrivatekeyPath} не знайдено.");
             }
             catch (Exception ex)
             {
+                PlaySound.OnPlaySoundClick(sender, a, ErrorPath, ErrorVolume, ErrorNumber);
+
                 MessageBox.Show($"Помилка при дешифруванні бази даних: {ex.Message}");
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,44 +16,66 @@ namespace Practical_Part_of_the_Diploma.RSA
         private const string Privatekey = "..\\..\\..\\Key\\Privatekey.pem";
         private const string Publickey = "..\\..\\..\\Key\\Publickey.pem";
 
-        public static string OnGeneratingKeysClick(object sender, EventArgs a, string txtGeneratingkeysValue)
+        public static async void OnGeneratingKeysClick(object sender, EventArgs a, string txtGeneratingkeysValue, string Loading, string LoadingPath, string KeyTime, Label labelKeyTime, double memoryInMegabytesKey, Label labelKeyMemory, string SuccessPath, float SuccessVolume, int SuccessNumber)
         {
-            int bitLength = Convert.ToInt32(txtGeneratingkeysValue);
-
-            BigInteger p = GeneratePrime(bitLength);
-            BigInteger q = GeneratePrime(bitLength);
-            BigInteger n = p * q;
-            BigInteger phi = (p - 1) * (q - 1);
-            BigInteger e = GetRandomCoprime(phi);
-            BigInteger d = ModInverse(e, phi);
-
-
-            string nX = n.ToString("X");
-            string eX = e.ToString("X");
-            string dX = d.ToString("X");
-
-            using (StreamWriter file = new StreamWriter(Path))
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            using (Process process = Process.GetCurrentProcess())
             {
-                file.WriteLine("Довжина: {0} біт", bitLength);
-                file.WriteLine("Перше просте число: {0}", p);
-                file.WriteLine("Друге просте число: {0}", q);
-                file.WriteLine("Значення функції Ельвора(phi): {0}", phi);
-                file.WriteLine("Публічний ключ (e, n): ({0}, {1})", e, n);
-                file.WriteLine("Приватний ключ (d, n): ({0}, {1})", d, n);
-                file.WriteLine("Приватний ключ (e, d, n): ({0}, {1}, {2})", eX, dX, nX);
-            }
+                using (Form loadingForm = LoadingMessageBox.ShowLoadingMessageBox(Loading, LoadingPath))
+                {
+                    loadingForm.Show();
 
-            using (StreamWriter file = new StreamWriter(Privatekey))
-            {
-                file.WriteLine("{0}, {1}", dX, nX);
-            }
+                    await Task.Run(() =>
+                    {
+                        int bitLength = Convert.ToInt32(txtGeneratingkeysValue);
 
-            using (StreamWriter file = new StreamWriter(Publickey))
-            {
-                file.WriteLine("{0}, {1}", eX, nX);
-            }
+                        BigInteger p = GeneratePrime(bitLength);
+                        BigInteger q = GeneratePrime(bitLength);
+                        BigInteger n = p * q;
+                        BigInteger phi = (p - 1) * (q - 1);
+                        BigInteger e = GetRandomCoprime(phi);
+                        BigInteger d = ModInverse(e, phi);
 
-            return $"Generated keys: d={d}, n={n}, e={e}";
+
+                        string nX = n.ToString("X");
+                        string eX = e.ToString("X");
+                        string dX = d.ToString("X");
+
+                        using (StreamWriter file = new StreamWriter(Path))
+                        {
+                            file.WriteLine("Довжина: {0} біт", bitLength);
+                            file.WriteLine("Перше просте число: {0}", p);
+                            file.WriteLine("Друге просте число: {0}", q);
+                            file.WriteLine("Значення функції Ельвора(phi): {0}", phi);
+                            file.WriteLine("Публічний ключ (e, n): ({0}, {1})", e, n);
+                            file.WriteLine("Приватний ключ (d, n): ({0}, {1})", d, n);
+                            file.WriteLine("Приватний ключ (e, d, n): ({0}, {1}, {2})", eX, dX, nX);
+                        }
+
+                        using (StreamWriter file = new StreamWriter(Privatekey))
+                        {
+                            file.WriteLine("{0}, {1}", dX, nX);
+                        }
+
+                        using (StreamWriter file = new StreamWriter(Publickey))
+                        {
+                            file.WriteLine("{0}, {1}", eX, nX);
+                        }
+                    });
+                }
+                memoryInMegabytesKey = process.PrivateMemorySize64 / (1024 * 1024);
+            }
+            stopwatch.Stop();
+            TimeSpan GeneratingKey = stopwatch.Elapsed;
+            KeyTime = GeneratingKey.ToString();
+
+            labelKeyTime.Text = $"Час генерування ключа: {KeyTime}";
+            labelKeyMemory.Text = $"Виділена пам'ять: {memoryInMegabytesKey} МБ для створення ключа";
+
+            PlaySound.OnPlaySoundClick(sender, a, SuccessPath, SuccessVolume, SuccessNumber);
+
+            MessageBox.Show("Ключі згенерувалися");
         }
 
         public static BigInteger GeneratePrime(int bitLength)

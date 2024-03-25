@@ -45,6 +45,14 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "dependencies": {
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
+            "NAudio.WaveFormRenderer": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "System.Data.OleDb": {
               "target": "Package",
               "version": "[8.0.0, )"

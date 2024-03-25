@@ -7,20 +7,28 @@
       "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|d:\\github\\diploma\\practical_part_of_the_diploma\\practical_part_of_the_diploma\\openfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\openfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|d:\\github\\diploma\\practical_part_of_the_diploma\\practical_part_of_the_diploma\\rsa\\decrypteddatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\rsa\\decrypteddatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|d:\\github\\diploma\\practical_part_of_the_diploma\\practical_part_of_the_diploma\\rsa\\encryptdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\rsa\\encryptdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|d:\\github\\diploma\\practical_part_of_the_diploma\\practical_part_of_the_diploma\\rsa\\decrypteddatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\rsa\\decrypteddatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|d:\\github\\diploma\\practical_part_of_the_diploma\\practical_part_of_the_diploma\\rsa\\generatingkeys.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\rsa\\generatingkeys.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|d:\\github\\diploma\\practical_part_of_the_diploma\\practical_part_of_the_diploma\\rsa\\loadingmessagebox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\rsa\\loadingmessagebox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|d:\\github\\diploma\\practical_part_of_the_diploma\\practical_part_of_the_diploma\\openfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\openfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|d:\\github\\diploma\\practical_part_of_the_diploma\\practical_part_of_the_diploma\\playsound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{920246E2-CEAD-4F77-9FFA-5727C7F67B04}|Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma.csproj|solutionrelative:practical_part_of_the_diploma\\playsound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +38,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlaySound.cs",
+              "DocumentMoniker": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\PlaySound.cs",
+              "RelativeDocumentMoniker": "Practical_Part_of_the_Diploma\\PlaySound.cs",
+              "ToolTip": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\PlaySound.cs",
+              "RelativeToolTip": "Practical_Part_of_the_Diploma\\PlaySound.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-25T00:10:06.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Form1.cs",
+              "RelativeDocumentMoniker": "Practical_Part_of_the_Diploma\\Form1.cs",
+              "ToolTip": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Form1.cs",
+              "RelativeToolTip": "Practical_Part_of_the_Diploma\\Form1.cs",
+              "ViewState": "AQIAALMAAAAAAAAAAAAUwOUAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-24T16:21:13.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoadingMessageBox.cs",
+              "DocumentMoniker": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\RSA\\LoadingMessageBox.cs",
+              "RelativeDocumentMoniker": "Practical_Part_of_the_Diploma\\RSA\\LoadingMessageBox.cs",
+              "ToolTip": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\RSA\\LoadingMessageBox.cs",
+              "RelativeToolTip": "Practical_Part_of_the_Diploma\\RSA\\LoadingMessageBox.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-24T22:15:26.537Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -44,25 +91,27 @@
               "RelativeDocumentMoniker": "Practical_Part_of_the_Diploma\\RSA\\EncryptDataBase.cs",
               "ToolTip": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\RSA\\EncryptDataBase.cs",
               "RelativeToolTip": "Practical_Part_of_the_Diploma\\RSA\\EncryptDataBase.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAgwGYAAABbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-24T16:21:13.761Z"
+              "WhenOpened": "2024-03-24T16:21:13.761Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "DecryptedDataBase.cs",
               "DocumentMoniker": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\RSA\\DecryptedDataBase.cs",
               "RelativeDocumentMoniker": "Practical_Part_of_the_Diploma\\RSA\\DecryptedDataBase.cs",
               "ToolTip": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\RSA\\DecryptedDataBase.cs",
               "RelativeToolTip": "Practical_Part_of_the_Diploma\\RSA\\DecryptedDataBase.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAAAFIAAAA2AAAA",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAiwGcAAABbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-24T16:21:13.828Z"
+              "WhenOpened": "2024-03-24T16:21:13.828Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "OpenFile.cs",
               "DocumentMoniker": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\OpenFile.cs",
               "RelativeDocumentMoniker": "Practical_Part_of_the_Diploma\\OpenFile.cs",
@@ -75,27 +124,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "GeneratingKeys.cs",
               "DocumentMoniker": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\RSA\\GeneratingKeys.cs",
               "RelativeDocumentMoniker": "Practical_Part_of_the_Diploma\\RSA\\GeneratingKeys.cs",
               "ToolTip": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\RSA\\GeneratingKeys.cs",
               "RelativeToolTip": "Practical_Part_of_the_Diploma\\RSA\\GeneratingKeys.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAIAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAADsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-24T16:21:13.841Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Form1.cs",
-              "RelativeDocumentMoniker": "Practical_Part_of_the_Diploma\\Form1.cs",
-              "ToolTip": "D:\\Github\\Diploma\\Practical_Part_of_the_Diploma\\Practical_Part_of_the_Diploma\\Form1.cs",
-              "RelativeToolTip": "Practical_Part_of_the_Diploma\\Form1.cs",
-              "ViewState": "AQIAAO0AAAAAAAAAAAAAAPYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-24T16:21:13.85Z",
+              "WhenOpened": "2024-03-24T16:21:13.841Z",
               "EditorCaption": ""
             }
           ]
